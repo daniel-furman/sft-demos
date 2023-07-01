@@ -139,7 +139,7 @@ In this section we will load the [MPT-7B model](https://huggingface.co/mosaicml/
 
 # load assets
 
-model_id = "mosaicml/mpt-7b"
+model_id = "tiiuae/falcon-7b"
 
 # mpt tokenizer load
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_id)
@@ -152,11 +152,7 @@ print(f"{model_id} tokenizer model_max_length: ", tokenizer.model_max_length)
 config = transformers.AutoConfig.from_pretrained(model_id, trust_remote_code=True)
 
 # custom options
-config.attn_config[
-    "attn_impl"
-] = "triton"  # Optional triton attention for improved latency
-config.init_device = "cuda"  # For fast initialization directly on GPU!
-config.max_seq_len = 1024  # Lower max seq len for mem savings
+config.max_seq_len = 2048  # Lower max seq len for mem savings
 config.torch_dtype = "bfloat16"  # Set bfloat16 data type for sft
 
 model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -211,7 +207,7 @@ training_arguments = transformers.TrainingArguments(
 Then finally pass everything to the trainer
 """
 
-max_seq_length = 1024  # tokenizer.model_max_length
+max_seq_length = 2048  # tokenizer.model_max_length
 
 trainer = SFTTrainer(
     model=model,
