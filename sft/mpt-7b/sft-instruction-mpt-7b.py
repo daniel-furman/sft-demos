@@ -48,7 +48,7 @@ max_memory = f"{free_in_GB-2}GB"
 
 n_gpus = torch.cuda.device_count()
 max_memory = {i: max_memory for i in range(n_gpus)}
-max_memory
+print("max_memory: ", max_memory)
 
 """
 ## Dataset
@@ -163,6 +163,12 @@ model = transformers.AutoModelForCausalLM.from_pretrained(
     device_map="auto",
 )
 
+free_in_GB = int(torch.cuda.mem_get_info()[0] / 1024**3)
+max_memory = f"{free_in_GB-2}GB"
+n_gpus = torch.cuda.device_count()
+max_memory = {i: max_memory for i in range(n_gpus)}
+print("max memory: ", max_memory)
+
 """
 
 ## Loading the trainer
@@ -226,5 +232,6 @@ max_memory = f"{free_in_GB-2}GB"
 n_gpus = torch.cuda.device_count()
 max_memory = {i: max_memory for i in range(n_gpus)}
 print("max memory: ", max_memory)
+
 end = time.time()
 print("total time: ", end - start)
