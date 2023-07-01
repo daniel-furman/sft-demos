@@ -10,7 +10,6 @@ This repo includes lightweight demos for supervised finetuning (SFT) of small- t
 * See the `./runs` folder for the raw results from each sft experiment.
 * See the `./inf_tests` folder for experiments measuring the runtime of different sft models.
 
-
 ## Documentation
 
 ### SFT is the second step in a typical GPT training pipeline
@@ -22,7 +21,7 @@ Key points for SFT:
 * Collect small but high-quality datasets in the form of "prompt" and "ideal responses". 
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
 * After training we get an SFT model which can be deployed as assistants (and it works to some extent).
-* The scripts herein perform full parameter sft (updates each weight in the network)
+* The scripts herein perform full-parameter sft (updates each weight in the network) as opposed to parameter efficient finetuning, such as QLoRA. 
 
 ![training_pipeline](assets/assistant_training_pipeline.png)
 
@@ -31,13 +30,17 @@ Key points for SFT:
 Below image from "[LLM guidance on open-source models](https://www.databricks.com/product/machine-learning/large-language-models-oss-guidance)" by Databricks. 
 
 * The table below lists current model recommendations for popular LLM use cases. Note that the table only lists open-source models that are for free commercial use. (Last updated: June 12, 2023). 
-* In this `sft_demos` repo we will finetune the Falcon-7B and MPT-7B base models on instruction-following datasets to reproduce the "Falcon-7B-Instruct" and "MPT-7B-Instruct" models. 
+* In this `sft_demos` repo we will finetune MPT-7B base models on instruction-following datasets to reproduce the "MPT-7B-Instruct" models. 
 
 ![model_reqs](assets/model_reqs.png)
 
 ### Datasets employed
 
 An instruction dataset is derived from a mix of "[mosaicml/dolly_hhrlhf](https://huggingface.co/datasets/mosaicml/dolly_hhrlhf)" and "[timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)" for sft. Each is open-source and licensed for commercial use.
+
+### Runs
+
+* Include loss plots and example prompts/responses for various sft models + latency tests
 
 
 
