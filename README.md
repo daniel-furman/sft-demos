@@ -1,12 +1,15 @@
 ## Supervised finetuning (SFT) instruction models
 
-This repo includes barebones demos for SFT of LLMs on a single NVIDIA GPU. 
+This repo includes lightweight demos for SFT of small to medium sized LLMs on a single NVIDIA GPU (Multi-GPU training not included).
 
 ### Code assets
 
 * See the `./sft` folder for finetuning scripts and postprocessing notebooks.
-* See the `./inf_tests` folder for experiments measuring the runtime of different sft models.
 * See the `./runs` folder for the raw results from each sft experiment.
+* See the `./inf_tests` folder for experiments measuring the runtime of different sft models.
+
+
+## Documentation
 
 ### SFT is the second step in a typical GPT training pipeline
 
