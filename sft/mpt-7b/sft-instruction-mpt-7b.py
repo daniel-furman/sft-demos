@@ -106,6 +106,7 @@ print(dataset_openassistant["train"][0])
 
 # combine datasets
 train_dataset = concatenate_datasets([train_dataset, dataset_openassistant["train"]])
+train_dataset = train_dataset.shuffle(seed=42)
 
 print("\nConcatenating datasets")
 print("Final mixed datasets:")
@@ -147,12 +148,11 @@ print(f"{model_id} tokenizer model_max_length: ", tokenizer.model_max_length)
 config = transformers.AutoConfig.from_pretrained(model_id, trust_remote_code=True)
 
 # custom options
-# config.attn_config['attn_impl'] = 'torch' # Default attention option
 config.attn_config[
     "attn_impl"
 ] = "triton"  # Optional triton attention for improved latency
 config.init_device = "cuda"  # For fast initialization directly on GPU!
-config.max_seq_len = tokenizer.model_max_length  # (input + output) tokens up to 2048
+config.max_seq_len = 1024  # Lower max seq len for mem savings
 config.torch_dtype = "bfloat16"  # Set bfloat16 data type for sft
 
 model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -201,7 +201,7 @@ training_arguments = transformers.TrainingArguments(
 Then finally pass everything to the trainer
 """
 
-max_seq_length = tokenizer.model_max_length
+max_seq_length = 1024  # tokenizer.model_max_length
 
 trainer = SFTTrainer(
     model=model,
