@@ -23,8 +23,8 @@ Key points for SFT:
 
 Below image from "[LLM guidance on open-source models](https://www.databricks.com/product/machine-learning/large-language-models-oss-guidance)" by Databricks. 
 
-* The table below lists current model recommendations for popular LLM use cases. Note that the table only lists open source models that are for free commercial use. (Last updated: June 12, 2023)
-* In this `sft_demos` repo we will finetune the Falcon and MPT base models on instruction-following datasets to reproduce the below models. 
+* The table below lists current model recommendations for popular LLM use cases. Note that the table only lists open-source models that are for free commercial use. (Last updated: June 12, 2023). 
+* In this `sft_demos` repo we will finetune the Falcon-7B and MPT-7B base models on instruction-following datasets to reproduce the "Falcon-7B-Instruct" and "MPT-7B-Instruct" models. 
 
 ![model_reqs](assets/model_reqs.png)
 
