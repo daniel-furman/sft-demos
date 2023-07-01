@@ -1,8 +1,8 @@
 ## Supervised finetuning of instruction-following LLMs
 
-This repo includes lightweight demos for supervised finetuning (SFT) of small to medium sized LLMs. The scripts here are only compatible to workstations equipped with a single NVIDIA GPU, such as an H100 80 GB. 
+This repo includes lightweight demos for supervised finetuning (SFT) of small- to medium-sized LLMs. The scripts here are only compatible to workstations with a single NVIDIA GPU, such as x1 H100 GPU with 80 GB VRAM. 
 
-* Multi-GPU demos for large sized LLMs are not included here, see other resources for this such as PyTorch's [Multi GPU training with DDP](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html)).
+* Multi-GPU demos for large-sized LLMs aren't included here, see [Multi GPU training with DDP](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html) for example).
 
 ### Code assets
 
