@@ -156,7 +156,7 @@ config.attn_config[
     "attn_impl"
 ] = "triton"  # Optional triton attention for improved latency
 config.init_device = "cuda"  # For fast initialization directly on GPU!
-config.max_seq_len = 1024  # Lower max seq len for mem savings
+config.max_seq_len = tokenizer.model_max_length 
 config.torch_dtype = "bfloat16"  # Set bfloat16 data type for sft
 
 model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -211,7 +211,7 @@ training_arguments = transformers.TrainingArguments(
 Then finally pass everything to the trainer
 """
 
-max_seq_length = 1024  # tokenizer.model_max_length
+max_seq_length = tokenizer.model_max_length
 
 trainer = SFTTrainer(
     model=model,
