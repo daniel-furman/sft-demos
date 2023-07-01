@@ -1,5 +1,7 @@
 ## Supervised finetuning (SFT) instruction models
 
+This repo includes barebones demos for SFT of LLMs on a single NVIDIA GPU. 
+
 ### Code assets
 
 * See the `./sft` folder for finetuning scripts and postprocessing notebooks.
