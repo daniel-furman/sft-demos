@@ -27,7 +27,9 @@ Key points for SFT:
 
 ### Models and datasets employed
 
-In this `sft_demos` repo we will finetune MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) base model (Apache 2.0) on various instruction-following datasets. 
+In this repo, we finetuned small- to medium-sized LLMs on various instruction-following datasets. 
+
+* [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) (Apache 2.0) 
 
 Several instruction-following datasets are tested herein. Each is open-source and licensed for commercial use.
 
