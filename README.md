@@ -1,14 +1,14 @@
 ## Supervised finetuning of instruction-following LLMs
 
-This repo includes lightweight demos for supervised finetuning (SFT) of small- to medium-sized LLMs. The scripts here are only compatible to workstations with a single NVIDIA GPU, such as x1 H100 GPU with 80 GB VRAM. 
+This repo includes lightweight demos for supervised finetuning (SFT) of small- to medium-sized language models, like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b).
 
-* Multi-GPU demos for large-sized LLMs aren't included here (see [Multi GPU training with DDP](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html) for example).
+* The scripts here are only compatible with single NVIDIA GPU workstations, such as x1 H100 GPU with 80 GB VRAM. For multi-GPU demos for large-sized LLMs, see PyTorch's [Multi GPU training with DDP](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html).
 
 ### Code assets
 
 * See the `./sft` folder for finetuning scripts and postprocessing notebooks.
 * See the `./runs` folder for the raw results from each sft experiment.
-* See the `./inf_tests` folder for experiments measuring the runtime of different sft models.
+* See the `./inf_tests` folder for runtime tests on different models.
 
 ## Documentation
 
@@ -21,22 +21,18 @@ Key points for SFT:
 * Collect small but high-quality datasets in the form of "prompt" and "ideal responses". 
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
 * After training we get an SFT model which can be deployed as assistants (and it works to some extent).
-* The scripts herein perform full-parameter sft (updates each weight in the network) as opposed to parameter efficient finetuning, such as QLoRA. 
+* The scripts herein perform full-parameter sft (updates each weight in the network). Other options include parameter-efficient finetuning, see HuggingFace's [peft](https://github.com/huggingface/peft).
 
 ![training_pipeline](assets/assistant_training_pipeline.png)
 
-### Models employed
+### Models and datasets employed
 
-Below image from "[LLM guidance on open-source models](https://www.databricks.com/product/machine-learning/large-language-models-oss-guidance)" by Databricks. 
+In this `sft_demos` repo we will finetune MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) base model (Apache 2.0) on various instruction-following datasets. 
 
-* The table below lists current model recommendations for popular LLM use cases. Note that the table only lists open-source models that are for free commercial use. (Last updated: June 12, 2023). 
-* In this `sft_demos` repo we will finetune MPT-7B base models on instruction-following datasets to reproduce the "MPT-7B-Instruct" models. 
+Several instruction-following datasets are tested herein. Each is open-source and licensed for commercial use.
 
-![model_reqs](assets/model_reqs.png)
-
-### Datasets employed
-
-An instruction dataset is derived from a mix of "[mosaicml/dolly_hhrlhf](https://huggingface.co/datasets/mosaicml/dolly_hhrlhf)" and "[timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)" for sft. Each is open-source and licensed for commercial use.
+* [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (Apache 2.0)
+* [Open-Orca/OpenOrca](https://huggingface.co/datasets/Open-Orca/OpenOrca) (MIT)
 
 ### Runs
 
