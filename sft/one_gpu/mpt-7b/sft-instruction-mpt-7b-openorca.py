@@ -13,7 +13,7 @@ At the end of the script, we will have a finetuned instruction-following model c
 
 Cluster info: This script was executed on an Ubuntu instance with an H100 GPU (80 GB) running on [Lambda Labs](https://lambdalabs.com/) (cluster type = gpu_1x_h100_pcie). 
 
-Runtime: Each epoch (10,000 examples) takes roughly 45 min to complete. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
+Runtime: The script takes roughly 45 min to complete 10,000 OpenOrca examples. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
 
 ### Warning
 
@@ -72,7 +72,7 @@ responses = []
 dataset_orca
 
 # grab the firt 10k entries in an instruction format
-dataset_head = dataset_orca.take(10000)
+dataset_head = dataset_orca.take(200000)
 ids = []
 system_prompts = []
 questions = []
@@ -140,7 +140,7 @@ config = transformers.AutoConfig.from_pretrained(model_id, trust_remote_code=Tru
 config.attn_config["attn_impl"] = "triton"  # Optional triton attention
 config.init_device = "cuda"  # For fast initialization directly on GPU!
 config.max_seq_len = tokenizer.model_max_length
-config.torch_dtype = "bfloat16"  # Set bfloat16 data type for sft
+config.torch_dtype = "bfloat16"
 
 model = transformers.AutoModelForCausalLM.from_pretrained(
     model_id,
@@ -166,13 +166,14 @@ from transformers import TrainingArguments
 """
 
 output_dir = "./results"
-num_train_epochs = 3
+num_train_epochs = 1
 auto_find_batch_size = True
 gradient_accumulation_steps = 1
 optim = "adamw_torch"
 save_strategy = "epoch"
 learning_rate = 5e-5
-lr_scheduler_type = "constant"
+lr_scheduler_type = "linear"
+warmup_ratio = 0.03
 logging_strategy = "steps"
 logging_steps = 50
 
@@ -186,6 +187,7 @@ training_arguments = transformers.TrainingArguments(
     save_strategy=save_strategy,
     learning_rate=learning_rate,
     lr_scheduler_type=lr_scheduler_type,
+    warmup_ratio=warmup_ratio,
     logging_strategy=logging_strategy,
     logging_steps=logging_steps,
 )

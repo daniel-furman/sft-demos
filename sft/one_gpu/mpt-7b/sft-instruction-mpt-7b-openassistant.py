@@ -171,7 +171,8 @@ gradient_accumulation_steps = 1
 optim = "adamw_torch"
 save_strategy = "epoch"
 learning_rate = 5e-5
-lr_scheduler_type = "constant"
+lr_scheduler_type = "linear"
+warmup_ratio = 0.03
 logging_strategy = "steps"
 logging_steps = 50
 
@@ -185,6 +186,7 @@ training_arguments = transformers.TrainingArguments(
     save_strategy=save_strategy,
     learning_rate=learning_rate,
     lr_scheduler_type=lr_scheduler_type,
+    warmup_ratio=warmup_ratio,
     logging_strategy=logging_strategy,
     logging_steps=logging_steps,
 )
