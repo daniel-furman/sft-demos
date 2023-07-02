@@ -1,8 +1,6 @@
 ## Supervised finetuning of instruction-following LLMs
 
-This repo includes lightweight demos for supervised finetuning (SFT) of small- to medium-sized language models, like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b).
-
-* The scripts here are only compatible with single NVIDIA GPU workstations, such as x1 H100 GPU with 80 GB VRAM. For multiple GPU training, see PyTorch's [training with distributed data parallelism](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html)/[sharded data parallelism](https://pytorch.org/docs/stable/fsdp.html) and MosaicML's [training platform](https://www.mosaicml.com/training).
+This repo includes lightweight demos for supervised finetuning (SFT) of large language models (LLMs), like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b).
 
 ### Code assets
 
