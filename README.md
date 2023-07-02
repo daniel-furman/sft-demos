@@ -2,7 +2,7 @@
 
 This repo includes lightweight demos for supervised finetuning (SFT) of small- to medium-sized language models, like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b).
 
-* The scripts here are only compatible with single NVIDIA GPU workstations, such as x1 H100 GPU with 80 GB VRAM. For multi-GPU demos for large-sized LLMs, see PyTorch's [Multi GPU training with DDP](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html) or MosaicML's [training product](https://www.mosaicml.com/training).
+* The scripts here are only compatible with single NVIDIA GPU workstations, such as x1 H100 GPU with 80 GB VRAM. For multiple GPU training, see PyTorch's [training with DDP](https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html) or MosaicML's [auto-training](https://www.mosaicml.com/training).
 
 ### Code assets
 
