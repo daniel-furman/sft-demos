@@ -1,7 +1,9 @@
 """
 ## Finetune an instruction-following LLM
 
-This Python script shows how to finetune an instruction-following MPT model on a single H100 GPU (80 GB). We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived from a mix of "mosaicml/dolly_hhrlhf" and "timdettmers/openassistant-guanaco" for the train set (all open-source and licensed for commercial use).
+This Python script shows how to finetune an instruction-following MPT model on a single H100 GPU (80 GB). 
+
+We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived from "timdettmers/openassistant-guanaco" for the train set (all open-source and licensed for commercial use).
 
 We will leverage the Hugging Face ecosystem for supervised finetuning (sft) with the handy [sft_trainer](https://huggingface.co/docs/trl/main/en/sft_trainer) function. 
 
@@ -11,7 +13,7 @@ At the end of the script, we will have a finetuned instruction-following model c
 
 Cluster info: This script was executed on an Ubuntu instance with an H100 GPU (80 GB) running on [Lambda Labs](https://lambdalabs.com/) (cluster type = gpu_1x_h100_pcie). 
 
-Runtime: Each epoch takes roughly 100 min. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour, as of Jun 2023. Thus, the finetuning is quite cost-effective. 
+Runtime: Each epoch takes roughly 50 min. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
 
 ### Warning
 
@@ -41,8 +43,7 @@ os.system("pip list")
 
 import torch
 import transformers
-import tqdm
-from datasets import load_dataset, concatenate_datasets
+from datasets import load_dataset
 from trl import SFTTrainer
 
 # print GPU available memory
@@ -57,19 +58,11 @@ print("max_memory: ", max_memory)
 """
 ## Dataset
 
-For our experiment, we will use the `mosaicml/dolly_hhrlhf` dataset to train general purpose instruct model.
+For our experiment, we will use the `timdettmers/openassistant-guanaco` dataset to train general purpose instruct model.
 
-The dataset can be found [here](https://huggingface.co/datasets/mosaicml/dolly_hhrlhf)
+The dataset can be found [here](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
 """
 
-dataset_name = "mosaicml/dolly_hhrlhf"
-print(f"\nLoading {dataset_name} dataset...")
-train_dataset = load_dataset(dataset_name, split="train")
-print("Print an example in the train datasets:")
-print(train_dataset)
-print(train_dataset[0])
-
-# mix in "timdettmers/openassistant-guanaco"
 dataset_name = "timdettmers/openassistant-guanaco"
 print(f"\nLoading {dataset_name} dataset...")
 dataset_openassistant = load_dataset(dataset_name)
@@ -77,13 +70,8 @@ prompts = []
 responses = []
 for i in range(len(dataset_openassistant["train"])):
     conversation = dataset_openassistant["train"][i]["text"]
-    # grab first human / assistant interaction, format in dolly style
+    # grab first human / assistant interaction
     prompt = conversation.split("### Human: ")[1].split("### Assistant: ")[0]
-    prompt = (
-        "Below is an instruction that describes a task. Write a response that appropriately completes the request. ### Instruction: "
-        + prompt
-        + " ### Response: "
-    )
     prompts.append(prompt)
     response = conversation.split("### Assistant: ")[1].split("### Human: ")[0]
     responses.append(response)
@@ -108,12 +96,8 @@ print("Print an example in the train dataset:")
 print(dataset_openassistant["train"])
 print(dataset_openassistant["train"][0])
 
-# combine datasets
-train_dataset = concatenate_datasets([train_dataset, dataset_openassistant["train"]])
-train_dataset = train_dataset.shuffle(seed=42)
-
-print("\nConcatenating datasets")
-print("Final mixed datasets:")
+print("Final train dataset:")
+train_dataset = dataset_openassistant["train"].shuffle(seed=42)
 print(train_dataset)
 print(train_dataset[0])
 print(train_dataset[-1])
@@ -152,11 +136,9 @@ print(f"{model_id} tokenizer model_max_length: ", tokenizer.model_max_length)
 config = transformers.AutoConfig.from_pretrained(model_id, trust_remote_code=True)
 
 # custom options
-config.attn_config[
-    "attn_impl"
-] = "triton"  # Optional triton attention for improved latency
+config.attn_config["attn_impl"] = "triton"  # Optional triton attention
 config.init_device = "cuda"  # For fast initialization directly on GPU!
-config.max_seq_len = tokenizer.model_max_length 
+config.max_seq_len = tokenizer.model_max_length
 config.torch_dtype = "bfloat16"  # Set bfloat16 data type for sft
 
 model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -183,12 +165,12 @@ from transformers import TrainingArguments
 """
 
 output_dir = "./results"
-num_train_epochs = 6
+num_train_epochs = 3
 auto_find_batch_size = True
 gradient_accumulation_steps = 1
 optim = "adamw_torch"
 save_strategy = "epoch"
-learning_rate = 2e-5
+learning_rate = 5e-5
 lr_scheduler_type = "constant"
 logging_strategy = "steps"
 logging_steps = 50
