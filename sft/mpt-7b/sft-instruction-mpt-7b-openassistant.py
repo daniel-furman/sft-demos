@@ -13,7 +13,7 @@ At the end of the script, we will have a finetuned instruction-following model c
 
 Cluster info: This script was executed on an Ubuntu instance with an H100 GPU (80 GB) running on [Lambda Labs](https://lambdalabs.com/) (cluster type = gpu_1x_h100_pcie). 
 
-Runtime: Each epoch takes roughly 45 min. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
+Runtime: Each epoch (9,846 examples) takes roughly 45 min to complete. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
 
 ### Warning
 

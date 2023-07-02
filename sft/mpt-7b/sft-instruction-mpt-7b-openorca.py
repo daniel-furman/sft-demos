@@ -3,7 +3,7 @@
 
 This Python script shows how to finetune an instruction-following MPT model on a single H100 GPU (80 GB). 
 
-We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived from "timdettmers/openassistant-guanaco" for the train set (all open-source and licensed for commercial use).
+We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived from "Open-Orca/OpenOrca" for the train set (all open-source and licensed for commercial use).
 
 We will leverage the Hugging Face ecosystem for supervised finetuning (sft) with the handy [sft_trainer](https://huggingface.co/docs/trl/main/en/sft_trainer) function. 
 
@@ -13,7 +13,7 @@ At the end of the script, we will have a finetuned instruction-following model c
 
 Cluster info: This script was executed on an Ubuntu instance with an H100 GPU (80 GB) running on [Lambda Labs](https://lambdalabs.com/) (cluster type = gpu_1x_h100_pcie). 
 
-Runtime: Each epoch takes roughly 45 min. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
+Runtime: Each epoch (10,000 examples) takes roughly 45 min to complete. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
 
 ### Warning
 
@@ -59,9 +59,9 @@ print("max_memory: ", max_memory)
 """
 ## Dataset
 
-For our experiment, we will use the `timdettmers/openassistant-guanaco` dataset to train general purpose instruct model.
+For our experiment, we will use the `Open-Orca/OpenOrca` dataset to train general purpose instruct model.
 
-The dataset can be found [here](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
+The dataset can be found [here](https://huggingface.co/datasets/Open-Orca/OpenOrca)
 """
 
 dataset_name = "Open-Orca/OpenOrca"
