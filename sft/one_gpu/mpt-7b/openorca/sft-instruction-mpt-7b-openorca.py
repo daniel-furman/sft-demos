@@ -77,8 +77,8 @@ def training_function(args):
     print(f"\nLoading {dataset_name} dataset...")
     dataset_orca = load_dataset(dataset_name, split="train", streaming=True)
 
-    # grab the first 100000 entries in an instruction format
-    dataset_head = dataset_orca.take(100000)
+    # grab the first 75000 entries in an instruction format
+    dataset_head = dataset_orca.take(75000)
     ids = []
     system_prompts = []
     questions = []
@@ -178,8 +178,7 @@ def training_function(args):
     optim = "adamw_torch"
     save_strategy = "epoch"
     learning_rate = lr
-    lr_scheduler_type = "linear"
-    warmup_ratio = 0.03
+    lr_scheduler_type = "constant"
     logging_strategy = "steps"
     logging_steps = 50
 
@@ -192,7 +191,6 @@ def training_function(args):
         save_strategy=save_strategy,
         learning_rate=learning_rate,
         lr_scheduler_type=lr_scheduler_type,
-        warmup_ratio=warmup_ratio,
         logging_strategy=logging_strategy,
         logging_steps=logging_steps,
     )

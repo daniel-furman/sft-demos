@@ -180,8 +180,7 @@ def training_function(args):
     optim = "adamw_torch"
     save_strategy = "epoch"
     learning_rate = lr
-    lr_scheduler_type = "linear"
-    warmup_ratio = 0.03
+    lr_scheduler_type = "constant"
     logging_strategy = "steps"
     logging_steps = 50
 
