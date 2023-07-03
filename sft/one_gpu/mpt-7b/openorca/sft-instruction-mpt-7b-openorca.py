@@ -77,8 +77,8 @@ def training_function(args):
     print(f"\nLoading {dataset_name} dataset...")
     dataset_orca = load_dataset(dataset_name, split="train", streaming=True)
 
-    # grab the firt 200000 entries in an instruction format
-    dataset_head = dataset_orca.take(200000)
+    # grab the first 100000 entries in an instruction format
+    dataset_head = dataset_orca.take(100000)
     ids = []
     system_prompts = []
     questions = []
@@ -242,7 +242,7 @@ def main():
     parser.add_argument(
         "--num_epochs",
         type=int,
-        default=1,
+        default=2,
         help="Num training epochs.",
     )
     parser.add_argument(
