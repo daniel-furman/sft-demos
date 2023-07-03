@@ -135,6 +135,8 @@ def training_function(args):
     # set mpt tokenizer padding token to eos token
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
+    print(f"{model_id} tokenizer eos_token: ", tokenizer.eos_token)
+    print(f"{model_id} tokenizer pad_token: ", tokenizer.pad_token)
     print(f"{model_id} tokenizer model_max_length: ", tokenizer.model_max_length)
 
     # mpt llm load
@@ -242,7 +244,7 @@ def main():
     parser.add_argument(
         "--num_epochs",
         type=int,
-        default=2,
+        default=3,
         help="Num training epochs.",
     )
     parser.add_argument(
