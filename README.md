@@ -36,11 +36,11 @@ In this repo, we finetuned small- to medium-sized LLMs on various instruction-fo
 Several instruction-following datasets are tested herein. Each is open-source and licensed for commercial use.
 
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (Apache 2.0)
-* [Open-Orca/OpenOrca](https://huggingface.co/datasets/Open-Orca/OpenOrca) (MIT)
+* [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (Apache 2.0)
 
 ### Runs
 
-* Include loss plots and example prompts/responses for various sft models + latency tests
+* To do: Include loss plots and example prompts/responses for various sft models + latency tests
 
 
 

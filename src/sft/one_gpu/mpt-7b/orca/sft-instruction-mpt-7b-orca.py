@@ -3,7 +3,7 @@
 
 This Python script shows how to finetune an instruction-following MPT model on a single H100 GPU (80 GB). 
 
-We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived from "Open-Orca/OpenOrca" for the train set (all open-source and licensed for commercial use).
+We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived from "ehartford/dolphin" for the train set (all open-source and licensed for commercial use).
 
 We will leverage the Hugging Face ecosystem for supervised finetuning (sft) with the handy [sft_trainer](https://huggingface.co/docs/trl/main/en/sft_trainer) function. 
 
@@ -13,7 +13,7 @@ At the end of the script, we will have a finetuned instruction-following model c
 
 Cluster info: This script was executed on an Ubuntu instance with an H100 GPU (80 GB) running on [Lambda Labs](https://lambdalabs.com/) (cluster type = gpu_1x_h100_pcie). 
 
-Runtime: The script takes roughly 45 min to complete 10,000 OpenOrca examples. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
+Runtime: The script takes roughly 45 min to complete 10,000 ehartford/dolphin examples. Lambda Labs's rate for the gpu_1x_h100_pcie cluster is 1.99 dollars/hour. Thus, the finetuning is quite cost-effective. 
 
 ### Warning
 
@@ -68,46 +68,66 @@ def training_function(args):
     """
     ## Dataset
     
-    For our experiment, we will use the `Open-Orca/OpenOrca` dataset to train general purpose instruct model.
+    For our experiment, we will use the `ehartford/dolphin` dataset to train general purpose instruct model.
     
-    The dataset can be found [here](https://huggingface.co/datasets/Open-Orca/OpenOrca)
+    The dataset can be found [here](https://huggingface.co/datasets/ehartford/dolphin)
     """
 
-    dataset_name = "Open-Orca/OpenOrca"
+    dataset_name = "ehartford/dolphin"
     print(f"\nLoading {dataset_name} dataset...")
     dataset_orca = load_dataset(dataset_name, split="train", streaming=True)
 
-    # grab the first 75000 entries in an instruction format
-    dataset_head = dataset_orca.take(75000)
-    ids = []
-    system_prompts = []
+    # grab the first 110000 entries in an instruction format
+    dataset_head = dataset_orca.take(110000)
     questions = []
     responses = []
 
     for row in dataset_head:
-        ids.append(row["id"])
-        system_prompts.append(row["system_prompt"])
-        questions.append(row["question"])
-        responses.append(row["response"])
+        questions.append(f'{row["instruction"]} {row["input"]}')
+        responses.append(row["output"])
 
-    pandas_dataset_orca = pd.DataFrame([ids, system_prompts, questions, responses]).T
-    pandas_dataset_orca.columns = ["id", "system_prompt", "prompt", "response"]
-    dataset_orca = Dataset.from_pandas(pandas_dataset_orca)
+    pandas_dataset_orca = pd.DataFrame([questions, responses]).T
+    pandas_dataset_orca.columns = ["prompt", "response"]
 
+    dataset_orca_train = Dataset.from_pandas(pandas_dataset_orca.iloc[0:100000, :])
     # remove old text cols
-    dataset_orca = dataset_orca.remove_columns(
-        [col for col in dataset_orca.column_names if col not in ["prompt", "response"]]
+    dataset_orca_train = dataset_orca_train.remove_columns(
+        [
+            col
+            for col in dataset_orca_train.column_names
+            if col not in ["prompt", "response"]
+        ]
     )
 
     print("Print an example in the train dataset:")
-    print(dataset_orca)
-    print(dataset_orca[0])
+    print(dataset_orca_train)
+    print(dataset_orca_train[0])
 
     print("Final train dataset:")
-    train_dataset = dataset_orca.shuffle(seed=42)
+    train_dataset = dataset_orca_train.shuffle(seed=seed)
     print(train_dataset)
     print(train_dataset[0])
     print(train_dataset[-1])
+
+    dataset_orca_eval = Dataset.from_pandas(pandas_dataset_orca.iloc[100000:, :])
+    # remove old text cols
+    dataset_orca_eval = dataset_orca_eval.remove_columns(
+        [
+            col
+            for col in dataset_orca_eval.column_names
+            if col not in ["prompt", "response"]
+        ]
+    )
+
+    print("Print an example in the eval dataset:")
+    print(dataset_orca_eval)
+    print(dataset_orca_eval[0])
+
+    print("Final eval dataset:")
+    eval_dataset = dataset_orca_eval.shuffle(seed=seed)
+    print(eval_dataset)
+    print(eval_dataset[0])
+    print(eval_dataset[-1])
 
     # let's now write a function to format the dataset for instruction fine-tuning
     # we will use the mpt-instruct model docs format
@@ -178,9 +198,14 @@ def training_function(args):
     optim = "adamw_torch"
     save_strategy = "epoch"
     learning_rate = lr
-    lr_scheduler_type = "constant"
+    lr_scheduler_type = "linear"
+    warmup_ratio = 0.03
     logging_strategy = "steps"
     logging_steps = 50
+    do_eval = True
+    evaluation_strategy = "steps"
+    prediction_loss_only = True
+    eval_steps = 0.2
 
     training_arguments = transformers.TrainingArguments(
         output_dir=output_dir,
@@ -191,8 +216,13 @@ def training_function(args):
         save_strategy=save_strategy,
         learning_rate=learning_rate,
         lr_scheduler_type=lr_scheduler_type,
+        warmup_ratio=warmup_ratio,
         logging_strategy=logging_strategy,
         logging_steps=logging_steps,
+        do_eval=do_eval,
+        evaluation_strategy=evaluation_strategy,
+        prediction_loss_only=prediction_loss_only,
+        eval_steps=eval_steps,
     )
 
     """
@@ -204,6 +234,7 @@ def training_function(args):
     trainer = SFTTrainer(
         model=model,
         train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
         formatting_func=formatting_prompts_func,
         max_seq_length=max_seq_length,
         tokenizer=tokenizer,
@@ -236,19 +267,19 @@ def main():
     parser.add_argument(
         "--lr",
         type=float,
-        default=5e-5,
+        default=2e-5,
         help="Learning rate for training.",
     )
     parser.add_argument(
         "--num_epochs",
         type=int,
-        default=3,
+        default=1,
         help="Num training epochs.",
     )
     parser.add_argument(
         "--seed",
         type=int,
-        default=42,
+        default=43,
         help="Random seed.",
     )
     args = parser.parse_args()
