@@ -44,7 +44,7 @@ Several instruction-following datasets are tested herein. Each is open-source an
 This model was finetuned for short-form instruction following.
 It was built by training [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). 
 
-For more details, see the HF Repo: see [link](https://huggingface.co/dfurman/mpt-7b-instruct-orca)
+For more details, see the [model card](https://huggingface.co/dfurman/mpt-7b-instruct-orca).
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
 
