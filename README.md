@@ -41,15 +41,12 @@ Several instruction-following datasets are tested herein. Each is open-source an
 
 ### 1. `dfurman/mpt-7b-instruct-orca`
 
-
-#### Model info
+### Model info
 This mpt-7b-instruct-orca LLM is finetuned for short-form instruction following.
 It was built by training [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/) publication). 
   * License: _CC-By-SA-3.0_
   * SFT script: see [link](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/mpt-7b/orca/sft-instruction-mpt-7b-orca.py)
   * HF Repo: see [link](https://huggingface.co/dfurman/mpt-7b-instruct-orca)
-
-#### Run info and loss curves
 
 Run 1: [jul_5_23_3_15_00_sft-instruction-mpt-7b-orca](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)
 * run args: `{'lr': 2e-5, 'num_epochs': 1, 'seed': 43}`
@@ -57,7 +54,7 @@ Run 1: [jul_5_23_3_15_00_sft-instruction-mpt-7b-orca](https://github.com/daniel-
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
 
-#### Example prompts and responses
+### Example prompts and responses
 
 Example 1: 
 
