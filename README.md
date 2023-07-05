@@ -39,27 +39,26 @@ Several instruction-following datasets are tested herein. Each is open-source an
 
 ## Instruction tuned models
 
-### dfurman/mpt-7b-instruct-orca 
+### 1. `dfurman/mpt-7b-instruct-orca`
 
-* [HF Repo](https://huggingface.co/dfurman/mpt-7b-instruct-orca)
 
 #### Model info
 This mpt-7b-instruct-orca LLM is for short-form instruction following.
 It is built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). 
   * License: _CC-By-SA-3.0_
   * SFT scripts: see [src/sft/one_gpu/mpt-7b/orca/sft-instruction-mpt-7b-orca.py](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/mpt-7b/orca/sft-instruction-mpt-7b-orca.py)
-
+  * HF Repo: see [link](https://huggingface.co/dfurman/mpt-7b-instruct-orca)
 
 #### Run info and loss curves
 
-* [runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)
-    * run args: {'lr': 2e-5, 'num_epochs': 1, 'seed': 43}
-    * log summary: {'train_runtime': 61098.1062, 'train_samples_per_second': 1.637, 'train_steps_per_second': 0.409, 'train_loss': 1.4058428125, 'epoch': 1.0}
+Run 1: [runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)
+* run args: `{'lr': 2e-5, 'num_epochs': 1, 'seed': 43}`
+* log summary: `{'train_runtime': 61098.1062, 'train_samples_per_second': 1.637, 'train_steps_per_second': 0.409, 'train_loss': 1.4058428125, 'epoch': 1.0}`
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
 
 #### Example prompts and responses
-
+s
 **User**:
 >You are a helpful assistant. Write me a numbered list of things to do in New York City.\n
 
@@ -117,5 +116,3 @@ It is built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on th
 > Yours,
 > 
 > Your Friendly Assistant
-
----
