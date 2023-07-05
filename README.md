@@ -72,6 +72,8 @@ Example 1:
 > 7. Visit the 9/11 Memorial and Museum: The 9/11 Memorial and Museum is a somber but important attraction in Lower Manhattan, commemorating the victims of the September 11th attacks.
 > 8. Take a ferry ride to the Statue of Liberty: A ferry ride to the Statue of Liberty is a great way to see the city from the water
 
+<br>
+
 Example 2: 
 
 **User**:
@@ -96,6 +98,8 @@ Example 2:
 > The statement does not make logical sense because Daniel went for a haircut on a day when the barber does not work.
 > 
 > Answer: No, the statement does not make logical sense. Daniel should have gone for a haircut on a day when the barber works, such as Monday, Wednesday, or Friday.
+
+<br>
 
 Example 3: 
 
