@@ -10,12 +10,11 @@ This repo contains lightweight demos for supervised finetuning (SFT) of large la
 
  In recent years, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks. For more background, see the [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) paper. 
  
- Below is a screengrab captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for SFT:
+ The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for SFT:
 
 * Collect small but high-quality datasets in the form of "prompt" and "ideal responses". 
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
 * After training we get an SFT model which can be deployed as assistants (and it works to some extent).
-* The scripts here perform full-parameter sft (updates all weights in the network). However, there are other options, such as parameter-efficient finetuning (see HuggingFace's [peft](https://github.com/huggingface/peft)).
 
 ![training_pipeline](assets/assistant_training_pipeline.png)
 
@@ -25,9 +24,11 @@ This repo contains lightweight demos for supervised finetuning (SFT) of large la
 * See the `./runs` folder for the raw results from each sft experiment.
 * See the `./inf_tests` folder for runtime tests on different models.
 
-## Base models and datasets employed
+**NB** The scripts here perform full-parameter sft (updates all weights in the network). However, there are other options, such as parameter-efficient finetuning (see HuggingFace's [peft](https://github.com/huggingface/peft)).
 
-In this repo, we finetune the following base models on various instruction-following datasets. Each is open-source and licensed for commercial use.
+## Base models and datasets
+
+In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.
 
 * [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) (Apache 2.0) 
 
