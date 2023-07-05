@@ -4,7 +4,7 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
-This repo contains lightweight demos for supervised finetuning (SFT) of large language models (LLMs), like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b). In particular, we focus on short-form instruction following.
+This repo contains lightweight demos for supervised finetuning (SFT) of large language models, like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b). In particular, we focus on short-form instruction following.
 
 ## Instruction tuning background
 
