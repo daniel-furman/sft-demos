@@ -4,7 +4,7 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
-This repo includes lightweight demos for supervised finetuning (SFT) of large language models (LLMs), like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b).
+This repo contains lightweight demos for supervised finetuning (SFT) of large language models (LLMs), like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b). In particular, we focus on short-form instruction following. In recent years, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks. For more background, see the [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) paper.
 
 ## Code assets
 
@@ -15,38 +15,36 @@ This repo includes lightweight demos for supervised finetuning (SFT) of large la
 
 ## SFT is the second step in a typical GPT training pipeline
 
-Below image from "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" by Andrej Karpathy. 
-
-Key points for SFT:
+Below image from "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" by Andrej Karpathy. Key points for SFT:
 
 * Collect small but high-quality datasets in the form of "prompt" and "ideal responses". 
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
 * After training we get an SFT model which can be deployed as assistants (and it works to some extent).
-* The scripts herein perform full-parameter sft (updates each weight in the network). Other options include parameter-efficient finetuning, see HuggingFace's [peft](https://github.com/huggingface/peft).
+* The scripts here perform full-parameter sft (updates all weights in the network). However, there are other options, such as parameter-efficient finetuning (see HuggingFace's [peft](https://github.com/huggingface/peft)).
 
 ![training_pipeline](assets/assistant_training_pipeline.png)
 
 ## Base models and datasets employed
 
-In this repo, we finetuned small- to medium-sized LLMs on various instruction-following datasets. 
+In this repo, we finetune the following base models on various instruction-following datasets. Each is open-source and licensed for commercial use.
 
 * [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) (Apache 2.0) 
 
-Several instruction-following datasets are tested herein. Each is open-source and licensed for commercial use.
+We test the following instruction datasets. Each is open-source and licensed for commercial use.
 
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (Apache 2.0)
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (Apache 2.0)
 
-## Instruction tuned models
+## Results
 
-### 1. `dfurman/mpt-7b-instruct-orca`
+### 1. `mpt-7b-instruct-orca`
 
-This model was finetuned for short-form instruction following.
-It was built by training [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). 
+This model was built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). 
 
 For more details, see the [model card](https://huggingface.co/dfurman/mpt-7b-instruct-orca).
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
+
 
 ### Example prompts and responses
 
