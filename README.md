@@ -43,22 +43,24 @@ Several instruction-following datasets are tested herein. Each is open-source an
 
 
 #### Model info
-This mpt-7b-instruct-orca LLM is for short-form instruction following.
-It is built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). 
+This mpt-7b-instruct-orca LLM is finetuned for short-form instruction following.
+It was built by training [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/) publication). 
   * License: _CC-By-SA-3.0_
-  * SFT scripts: see [src/sft/one_gpu/mpt-7b/orca/sft-instruction-mpt-7b-orca.py](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/mpt-7b/orca/sft-instruction-mpt-7b-orca.py)
+  * SFT script: see [link](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/mpt-7b/orca/sft-instruction-mpt-7b-orca.py)
   * HF Repo: see [link](https://huggingface.co/dfurman/mpt-7b-instruct-orca)
 
 #### Run info and loss curves
 
-Run 1: [runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)
+Run 1: [jul_5_23_3_15_00_sft-instruction-mpt-7b-orca](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)
 * run args: `{'lr': 2e-5, 'num_epochs': 1, 'seed': 43}`
 * log summary: `{'train_runtime': 61098.1062, 'train_samples_per_second': 1.637, 'train_steps_per_second': 0.409, 'train_loss': 1.4058428125, 'epoch': 1.0}`
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
 
 #### Example prompts and responses
-s
+
+Example 1: 
+
 **User**:
 >You are a helpful assistant. Write me a numbered list of things to do in New York City.\n
 
@@ -72,6 +74,8 @@ s
 > 6. Explore the Museum of Modern Art (MoMA): MoMA is a renowned art museum in Midtown Manhattan, showcasing modern and contemporary art from around the world.
 > 7. Visit the 9/11 Memorial and Museum: The 9/11 Memorial and Museum is a somber but important attraction in Lower Manhattan, commemorating the victims of the September 11th attacks.
 > 8. Take a ferry ride to the Statue of Liberty: A ferry ride to the Statue of Liberty is a great way to see the city from the water
+
+Example 2: 
 
 **User**:
 >You are a helpful assistant. Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense? Let's work this out in a step by step fashion to make sure we have the right answer.\n
@@ -95,6 +99,8 @@ s
 > The statement does not make logical sense because Daniel went for a haircut on a day when the barber does not work.
 > 
 > Answer: No, the statement does not make logical sense. Daniel should have gone for a haircut on a day when the barber works, such as Monday, Wednesday, or Friday.
+
+Example 3: 
 
 **User**:
 >You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
