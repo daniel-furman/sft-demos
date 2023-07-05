@@ -40,7 +40,9 @@ Several instruction-following datasets are tested herein. Each is open-source an
 
 ### Runs
 
-* To do: Include loss plots and example prompts/responses for various sft models + latency tests
+1. `runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca` ([dfurman/mpt-7b-instruct-orca](https://huggingface.co/dfurman/mpt-7b-instruct-orca))
+    * run args: {'lr': 2e-5, 'num_epochs': 1, 'seed': 43}
+    * log summary: {'train_runtime': 61098.1062, 'train_samples_per_second': 1.637, 'train_steps_per_second': 0.409, 'train_loss': 1.4058428125, 'epoch': 1.0}
 
-
+![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
 
