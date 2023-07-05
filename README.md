@@ -4,18 +4,13 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
-This repo contains lightweight demos for supervised finetuning (SFT) of large language models (LLMs), like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b). In particular, we focus on short-form instruction following. In recent years, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks. For more background, see the [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) paper.
+This repo contains lightweight demos for supervised finetuning (SFT) of large language models (LLMs), like MosaicML's [MPT-7B](https://huggingface.co/mosaicml/mpt-7b). In particular, we focus on short-form instruction following.
 
-## Code assets
+## Instruction tuning background
 
-* See the `./sft` folder for finetuning scripts and postprocessing notebooks.
-* See the `./runs` folder for the raw results from each sft experiment.
-* See the `./inf_tests` folder for runtime tests on different models.
-
-
-## SFT is the second step in a typical GPT training pipeline
-
-Below image from "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" by Andrej Karpathy. Key points for SFT:
+ In recent years, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks. For more background, see the [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) paper. 
+ 
+ Below is a screengrab captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for SFT:
 
 * Collect small but high-quality datasets in the form of "prompt" and "ideal responses". 
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
@@ -23,6 +18,12 @@ Below image from "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" 
 * The scripts here perform full-parameter sft (updates all weights in the network). However, there are other options, such as parameter-efficient finetuning (see HuggingFace's [peft](https://github.com/huggingface/peft)).
 
 ![training_pipeline](assets/assistant_training_pipeline.png)
+
+## Code assets
+
+* See the `./sft` folder for finetuning scripts and postprocessing notebooks.
+* See the `./runs` folder for the raw results from each sft experiment.
+* See the `./inf_tests` folder for runtime tests on different models.
 
 ## Base models and datasets employed
 
