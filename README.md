@@ -48,7 +48,7 @@ For more details, see the [model card](https://huggingface.co/dfurman/mpt-7b-ins
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
 
-Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca` [link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca).  
+Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)).  
 
 ### Example prompts and responses
 
