@@ -133,3 +133,27 @@ Example 3:
 | 1.17                        | 1x A100 (40 GB SXM)  | triton              | bfloat16    | 13                    |
 | 1.36                        | 1x A100 (40 GB SXM)  | torch               | bfloat16    | 13                    |
 | 4.84                        | 1x Tesla T4 (15 GB)  | torch               | bfloat16    | 13                    |
+
+
+The runtime statistics above (leftmost column) were generated with following code for each test, as per the corresponding [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_orca.ipynb). 
+
+```python
+prompt = "You are a helpful assistant. Write me a long list of things to do in San Francisco:\n"
+
+runtimes = []
+for i in tqdm.tqdm(range(100)):
+    start = time.time()
+    response = mpt_generate(
+        model,
+        tokenizer,
+        prompt,
+        max_new_tokens=50,
+        temperature=0.92,
+    )
+    end = time.time()
+    runtimes.append(end - start)
+    assert len(tokenizer.encode(response)) == 50
+
+avg_runtime = torch.mean(torch.tensor(runtimes)).item()
+print(f"Runtime avg in seconds: {avg_runtime}")  # time in seconds
+```
