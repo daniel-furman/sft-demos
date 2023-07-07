@@ -122,10 +122,12 @@ Example 3:
 > 
 > Your Friendly Assistant
 
+<br>
+
 ### Runtime tests
 
 | runtime per 50 tokens (sec) | GPU type             | attn implementation | torch dtype | VRAM consumption (GB) |
-|-----------------------------|----------------------|---------------------|-------------|-----------------------|
+|:-----------------------------:|:----------------------:|:---------------------:|:-------------:|:-----------------------:|
 | 0.61                        | 1x H100 (80 GB PCIe) | triton              | bfloat16    | 12                    |
 | 0.67                        | 1x H100 (80 GB PCIe) | torch               | bfloat16    | 12                    |
 | 1.17                        | 1x A100 (40 GB SXM)  | triton              | bfloat16    | 13                    |
