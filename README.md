@@ -127,13 +127,15 @@ Example 3:
 ### Runtime tests
 
 | runtime per 50 tokens (sec) | GPU type             | attn implementation | torch dtype | VRAM consumption (GB) |
-|:-----------------------------:|:----------------------:|:---------------------:|:-------------:|:-----------------------:|
+|-----------------------------|----------------------|---------------------|-------------|-----------------------|
 | 0.61                        | 1x H100 (80 GB PCIe) | triton              | bfloat16    | 12                    |
 | 0.67                        | 1x H100 (80 GB PCIe) | torch               | bfloat16    | 12                    |
 | 1.17                        | 1x A100 (40 GB SXM)  | triton              | bfloat16    | 13                    |
 | 1.36                        | 1x A100 (40 GB SXM)  | torch               | bfloat16    | 13                    |
-| 4.84                        | 1x Tesla T4 (15 GB)  | torch               | bfloat16    | 13                    |
-
+| 2.25                        | 1x V100 (16 GB SXM)  | torch               | float16     | 13                    |
+| 3.75                        | 1x V100 (16 GB SXM)  | torch               | fp4         | 4                     |
+| 4.84                        | 1x Tesla T4 (15 GB)  | torch               | float16     | 13                    |
+| 8.77                        | 1x Tesla T4 (15 GB)  | torch               | fp4         | 4                     |
 
 The runtime statistics above (leftmost column) were generated with following code for each test, as per the corresponding [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_orca.ipynb). 
 
