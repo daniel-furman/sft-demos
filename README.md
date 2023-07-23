@@ -45,7 +45,7 @@ This short-form instruction following model was built by finetuning [MPT-7B](htt
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
 
-Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-dolphin` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-dolphin)).  
+Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin)).  
 
 ### Example prompts and responses
 
