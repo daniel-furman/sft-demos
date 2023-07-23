@@ -46,7 +46,7 @@ This chatbot model was built via parameter-efficient QLoRA finetuning of [llama-
 
 ![loss_curves](assets/jul_22_23_3_15_00_log_loss_curves_llama-2-13b-guanaco.png)
 
-Plot from the run's private wandb.ai logs.  
+The above loss curve was generated from the run's private wandb.ai log.  
 
 ### Example prompts and responses
 
@@ -109,7 +109,7 @@ Example 3:
 | 2.93                        | 1x A100 (40 GB SXM)  | torch               | bfloat16    | 25                    |
 | 3.24                        | 1x A6000 (48 GB)  | torch               | bfloat16    | 25                    |
 
-The runtime stats were generated with this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
+The above runtime stats were generated from this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/llama-2/guanaco/postprocessing-llama-2-13b-guanaco-peft.ipynb). 
 
 <br>
 
@@ -119,7 +119,7 @@ This instruction following model was built via full parameter finetuning of [mpt
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
 
-Plot from the tfevents log at [link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin).  
+The above loss curve was generated from the tfevents log at [link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin).  
 
 ### Example prompts and responses
 
@@ -206,4 +206,6 @@ Example 3:
 | 4.84                        | 1x Tesla T4 (15 GB)  | torch               | float16     | 13                    |
 | 8.77                        | 1x Tesla T4 (15 GB)  | torch               | fp4         | 4                     |
 
-The runtime stats were generated with this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
+The above runtime stats were generated from this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
+
+<br>
