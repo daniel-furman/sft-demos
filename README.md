@@ -24,7 +24,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 * See the `./sft` folder for finetuning scripts and postprocessing notebooks.
 * See the `./runs` folder for the raw results from each sft experiment.
-* See the `./inf_tests` folder for runtime tests on different models.
+* See the `./inf_tests` folder for runtime testing notebooks.
 
 ## Base models and datasets
 
