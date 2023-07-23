@@ -159,6 +159,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+# Mac OS specific
+DS_Store
+
 # Project specific ignores
 test.ipynb
 ideas.md
