@@ -89,7 +89,9 @@ def training_function(args):
     pandas_dataset_dolphin = pd.DataFrame([questions, responses]).T
     pandas_dataset_dolphin.columns = ["prompt", "response"]
 
-    dataset_dolphin_train = Dataset.from_pandas(pandas_dataset_dolphin.iloc[0:100000, :])
+    dataset_dolphin_train = Dataset.from_pandas(
+        pandas_dataset_dolphin.iloc[0:100000, :]
+    )
     # remove old text cols
     dataset_dolphin_train = dataset_dolphin_train.remove_columns(
         [
