@@ -26,8 +26,6 @@ For more background, see any number of excellent papers on the subject, includin
 * See the `./runs` folder for the raw results from each sft experiment.
 * See the `./inf_tests` folder for runtime tests on different models.
 
-**NB** The scripts here perform full-parameter sft (updates all weights in the network). However, there are other options, such as parameter-efficient finetuning (see HuggingFace's [peft](https://github.com/huggingface/peft)).
-
 ## Base models and datasets
 
 In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.

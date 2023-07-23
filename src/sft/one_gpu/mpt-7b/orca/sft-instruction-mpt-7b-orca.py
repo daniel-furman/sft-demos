@@ -7,7 +7,7 @@ We use "mosaicml/mpt-7b" as the base model and an instruction dataset derived fr
 
 We will leverage the Hugging Face ecosystem for supervised finetuning (sft) with the handy [sft_trainer](https://huggingface.co/docs/trl/main/en/sft_trainer) function. 
 
-At the end of the script, we will have a finetuned instruction-following model cached to disk that we can then upload to a private model repo on the Hugging Face hub (see post-process-sft-llm.ipynb). 
+At the end of the script, we will have a finetuned instruction-following model cached to disk that we can then upload to a model repo on the Hugging Face hub. 
 
 ### Reproducibility
 
