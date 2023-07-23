@@ -37,7 +37,7 @@ We test the following instruction datasets. Each is open-source and licensed for
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (Apache 2.0)
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (Apache 2.0)
 
-## Results
+## Finetuned models
 
 ### 1. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
 
