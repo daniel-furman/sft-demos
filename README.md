@@ -46,7 +46,7 @@ This short-form instruction following model was built by finetuning [MPT-7B](htt
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
 
-Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin)).  
+Plot from the tfevents log at `runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin)).  
 
 ### Example prompts and responses
 
@@ -133,4 +133,4 @@ Example 3:
 | 4.84                        | 1x Tesla T4 (15 GB)  | torch               | float16     | 13                    |
 | 8.77                        | 1x Tesla T4 (15 GB)  | torch               | fp4         | 4                     |
 
-The runtime statistics above (leftmost column) were generated with following code for each test, as per the corresponding [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
+The runtime stats were generated with this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
