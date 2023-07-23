@@ -41,7 +41,7 @@ We test the following instruction datasets. Each is open-source and licensed for
 
 ### 1. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
 
-This short-form instruction following model was built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). It was trained on a single H100 (80 GB PCIe) for about 12 hours using the [Lambda Labs Platform](https://cloud.lambdalabs.com/instances).
+This short-form instruction following model was built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). It was trained on a single H100 (80 GB PCIe) for about 12 hours using [Lambda Labs](https://cloud.lambdalabs.com/instances).
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
 
