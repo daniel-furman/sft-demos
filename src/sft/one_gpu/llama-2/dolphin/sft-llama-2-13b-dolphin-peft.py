@@ -256,8 +256,8 @@ trainer.train()
 
 # wandb: Currently logged in as: dryanfurman. Use `wandb login --relogin` to force relogin
 # wandb: Tracking run with wandb version 0.15.5
-# wandb: Run data is saved locally in /home/ubuntu/wandb/run-20230723_203633-cofff9tb
+# wandb: Run data is saved locally in /home/ubuntu/wandb/run-20230723_071649-pohixish
 # wandb: Run `wandb offline` to turn off syncing.
-# wandb: Syncing run twilight-fire-16
+# wandb: Syncing run dulcet-blaze-13 to Weights & Biases (docs)
 # wandb: ⭐️ View project at https://wandb.ai/dryanfurman/huggingface
-# wandb: 🚀 View run at https://wandb.ai/dryanfurman/huggingface/runs/cofff9tb
+# wandb: 🚀 View run at View run at https://wandb.ai/dryanfurman/huggingface/runs/pohixish
