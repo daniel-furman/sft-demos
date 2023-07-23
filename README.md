@@ -42,11 +42,11 @@ We test the following instruction datasets. Each is open-source and licensed for
 
 ### 1. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
 
-This short-form instruction following model was built by finetuning [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). It was trained on a single H100 (80 GB PCIe) for about 12 hours using [Lambda Labs](https://cloud.lambdalabs.com/instances) via full parameter finetuning.
+This instruction following model was built via full parameter finetuning of [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). Finetuning was executed on a single H100 (80 GB PCIe) for roughly 12 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
 
-Plot from the tfevents log at `runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin)).  
+Plot from the tfevents log at [link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-mpt-7b-dolphin).  
 
 ### Example prompts and responses
 
