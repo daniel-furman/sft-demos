@@ -30,13 +30,14 @@ For more background, see any number of excellent papers on the subject, includin
 
 In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.
 
-* [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) (Apache 2.0) 
-* [llama-2-7b](https://huggingface.co/meta-llama/Llama-2-7b-hf) ([llama2](https://huggingface.co/meta-llama/Llama-2-7b/blob/main/LICENSE.txt)) 
+* [mpt-7b](https://huggingface.co/mosaicml/mpt-7b)
+* [llama-2-7b](https://huggingface.co/meta-llama/Llama-2-7b-hf)
+* [llama-2-13b](https://huggingface.co/meta-llama/Llama-2-13b-hf)
 
 We test the following datasets. Each is open-source and licensed for commercial use.
 
-* [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (Apache 2.0)
-* [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (Apache 2.0)
+* [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
+* [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
 
 ## Finetuned models
 
@@ -45,7 +46,7 @@ We test the following datasets. Each is open-source and licensed for commercial 
 This chatbot model was built via parameter-efficient QLoRA finetuning of [llama-2-13b](https://huggingface.co/meta-llama/Llama-2-13b-hf) on all 9.85k rows of [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (a subset of [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) containing the highest-rated conversation paths). Finetuning was executed on a single A6000 (48 GB) for roughly 3.7 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
 * Model license: Llama 2 Community License Agreement
-* Basic usage: [notebook](assets/basic_inference_llama_2_13b_guanaco.ipynb)
+* Basic usage: [notebook](https://huggingface.co/dfurman/llama-2-13b-guanaco-peft/blob/main/assets/basic_inference_llama_2_13b_guanaco.ipynb)
 * Finetuning code: [notebook](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/llama-2/guanaco/sft-llama-2-13b-guanaco-peft.ipynb)
 
 ![loss_curves](assets/jul_22_23_3_15_00_log_loss_curves_llama-2-13b-guanaco.png)
@@ -122,7 +123,7 @@ The above runtime stats were generated from this [notebook](https://github.com/d
 This instruction model was built via full parameter finetuning of [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). Finetuning was executed on a single H100 (80 GB PCIe) for roughly 12 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
 * Model license: Apache 2.0
-* Basic usage: [notebook](assets/basic_inference_mpt-7b-dolphin.ipynb)
+* Basic usage: [notebook](https://huggingface.co/dfurman/mpt-7b-dolphin/blob/main/assets/basic_inference_mpt-7b-dolphin.ipynb)
 * Finetuning code: [script](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/mpt/dolphin/sft-mpt-7b-dolphin.py)
 
 ![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
