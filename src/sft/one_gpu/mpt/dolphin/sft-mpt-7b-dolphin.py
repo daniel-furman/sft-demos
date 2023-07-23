@@ -132,9 +132,6 @@ def training_function(args):
     print(eval_dataset[-1])
 
     # let's now write a function to format the dataset for instruction fine-tuning
-    # we will use the mpt-instruct model docs format
-    # see https://huggingface.co/docs/trl/main/en/sft_trainer#format-your-input-prompts for docs
-
     def formatting_prompts_func(dataset):
         instructions = []
         for i in range(len(dataset["prompt"])):
