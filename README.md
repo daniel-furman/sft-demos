@@ -39,7 +39,7 @@ We test the following instruction datasets. Each is open-source and licensed for
 
 ## Results
 
-### 1. `mpt-7b-dolphin`
+### 1. [MPT-7b-dolphin](https://huggingface.co/dfurman/mpt-7b-dolphin)
 
 This short-form instruction following model was built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). It was trained on a single H100 (80 GB PCIe) for about 12 hours using the [Lambda Labs Platform](https://cloud.lambdalabs.com/instances).
 
@@ -136,24 +136,3 @@ Example 3:
 | 8.77                        | 1x Tesla T4 (15 GB)  | torch               | fp4         | 4                     |
 
 The runtime statistics above (leftmost column) were generated with following code for each test, as per the corresponding [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
-
-```python
-prompt = "You are a helpful assistant. Write me a long list of things to do in San Francisco:\n"
-
-runtimes = []
-for i in tqdm.tqdm(range(100)):
-    start = time.time()
-    response = mpt_generate(
-        model,
-        tokenizer,
-        prompt,
-        max_new_tokens=50,
-        temperature=0.92,
-    )
-    end = time.time()
-    runtimes.append(end - start)
-    assert len(tokenizer.encode(response)) == 50
-
-avg_runtime = torch.mean(torch.tensor(runtimes)).item()
-print(f"Runtime avg in seconds: {avg_runtime}")  # time in seconds
-```
