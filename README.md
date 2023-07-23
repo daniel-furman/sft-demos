@@ -33,14 +33,87 @@ In this repo, we finetune the following base models. Each is open-source and lic
 * [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) (Apache 2.0) 
 * [llama-2-7b](https://huggingface.co/meta-llama/Llama-2-7b-hf) ([llama2](https://huggingface.co/meta-llama/Llama-2-7b/blob/main/LICENSE.txt)) 
 
-We test the following instruction datasets. Each is open-source and licensed for commercial use.
+We test the following datasets. Each is open-source and licensed for commercial use.
 
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (Apache 2.0)
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (Apache 2.0)
 
 ## Finetuned models
 
-### 1. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
+### 1. [`llama-2-13b-guanaco-peft`](https://huggingface.co/dfurman/llama-2-13b-guanaco-peft)
+
+This chatbot model was built via parameter-efficient QLoRA finetuning of [llama-2-13b](https://huggingface.co/meta-llama/Llama-2-13b-hf) on all 9.85k rows of [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (a subset of [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) containing the highest-rated conversation paths). Finetuning was executed on a single A6000 (48 GB) for roughly 3.7 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
+
+![loss_curves](assets/jul_22_23_3_15_00_log_loss_curves_llama-2-13b-guanaco.png)
+
+Plot from the run's private wandb.ai logs.  
+
+### Example prompts and responses
+
+Example 1: 
+
+**User**:
+>\### Human: Write me a numbered list of things to do in New York City.### Assistant: 
+
+**llama-2-13b-guanaco-peft**:
+
+> 1. Visit the Statue of Liberty and Ellis Island
+> 2. Take a stroll through Central Park
+> 3. Visit the Empire State Building
+> 4. See a Broadway show
+> 5. Explore the Metropolitan Museum of Art
+> 6. Visit the 9/11 Memorial and Museum
+> 7. Take a ride on the Staten Island Ferry
+> 8. Shop on Fifth Avenue
+> 9. Eat a slice of pizza at a local pizzeria
+> 10. Visit the High Line
+
+<br>
+
+Example 2: 
+
+**User**:
+>\### Human: Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense?### Assistant: 
+
+**llama-2-13b-guanaco-peft**:
+
+> No, it does not make logical sense.  The barber works on Mondays, Wednesdays, and Fridays, so Daniel would have to wait until one of those days to get a haircut.  It is not possible for Daniel to get a haircut on Sunday, as the barber is not working on that day.
+
+<br>
+
+Example 3: 
+
+**User**:
+>\### Human: Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.### Assistant:
+
+**llama-2-13b-guanaco-peft**:
+
+> Subject: Dinner party on Friday
+> 
+> Hey guys,
+> 
+> I'm hosting a dinner party on Friday at my place. It's going to be a small gathering with just a few of us. I'll be cooking some delicious food, so I hope you can make it.
+> 
+> Let me know if you can come and what you'd like to bring. I'll send out the address and more details later.
+> 
+> See you soon!
+> 
+> [Your name]
+
+<br>
+
+### Runtime tests
+
+| runtime / 50 tokens (sec) | GPU             | attn | torch dtype | VRAM (GB) |
+|:-----------------------------:|:----------------------:|:---------------------:|:-------------:|:-----------------------:|
+| 2.93                        | 1x A100 (40 GB SXM)  | torch               | bfloat16    | 25                    |
+| 3.24                        | 1x A6000 (48 GB)  | torch               | bfloat16    | 25                    |
+
+The runtime stats were generated with this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
+
+<br>
+
+### 2. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
 
 This instruction following model was built via full parameter finetuning of [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). Finetuning was executed on a single H100 (80 GB PCIe) for roughly 12 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
