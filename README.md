@@ -39,16 +39,16 @@ We test the following instruction datasets. Each is open-source and licensed for
 
 ## Results
 
-### 1. `mpt-7b-instruct-orca`
+### 1. `mpt-7b-dolphin`
 
 This short-form instruction following model was built by finetuning [MPT-7B](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of the [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) dataset (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). It was trained on a single H100 (80 GB PCIe) for about 12 hours using the [Lambda Labs Platform](https://cloud.lambdalabs.com/instances).
 
 
-For more details, see the [model card](https://huggingface.co/dfurman/mpt-7b-instruct-orca).
+For more details, see the [model card](https://huggingface.co/dfurman/mpt-7b-dolphin).
 
-![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves.png)
+![loss_curves](assets/jul_5_23_3_15_00_log_loss_curves_mpt-7b-dolphin.png)
 
-Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-orca)).  
+Plot derived from the tfevents log at `runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-dolphin` ([link](https://github.com/daniel-furman/sft-demos/tree/main/runs/jul_5_23_3_15_00_sft-instruction-mpt-7b-dolphin)).  
 
 ### Example prompts and responses
 
@@ -57,7 +57,7 @@ Example 1:
 **User**:
 >You are a helpful assistant. Write me a numbered list of things to do in New York City.\n
 
-**mpt-7b-instruct-orca**:
+**mpt-7b-dolphin**:
 
 > 1. Visit the Statue of Liberty: The Statue of Liberty is a symbol of freedom and democracy, and it is a must-see attraction in New York City.
 > 2. Take a walk in Central Park: Central Park is a massive green space in the heart of Manhattan, and it is a great place to relax, enjoy nature, and people-watch.
@@ -75,7 +75,7 @@ Example 2:
 **User**:
 >You are a helpful assistant. Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense? Let's work this out in a step by step fashion to make sure we have the right answer.\n
 
-**mpt-7b-instruct-orca**:
+**mpt-7b-dolphin**:
 
 > Step 1: Identify the days of the week when the barber works.
 > 
@@ -102,7 +102,7 @@ Example 3:
 **User**:
 >You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
 
-**mpt-7b-instruct-orca**:
+**mpt-7b-dolphin**:
 
 > Subject: Invitation to Dinner Party on Friday
 > 
@@ -135,7 +135,7 @@ Example 3:
 | 4.84                        | 1x Tesla T4 (15 GB)  | torch               | float16     | 13                    |
 | 8.77                        | 1x Tesla T4 (15 GB)  | torch               | fp4         | 4                     |
 
-The runtime statistics above (leftmost column) were generated with following code for each test, as per the corresponding [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_orca.ipynb). 
+The runtime statistics above (leftmost column) were generated with following code for each test, as per the corresponding [notebook](https://github.com/daniel-furman/sft-demos/blob/main/inf_tests/runtimes_mpt_7b_dolphin.ipynb). 
 
 ```python
 prompt = "You are a helpful assistant. Write me a long list of things to do in San Francisco:\n"

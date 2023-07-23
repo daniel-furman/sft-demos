@@ -75,10 +75,10 @@ def training_function(args):
 
     dataset_name = "ehartford/dolphin"
     print(f"\nLoading {dataset_name} dataset...")
-    dataset_orca = load_dataset(dataset_name, split="train", streaming=True)
+    dataset_dolphin = load_dataset(dataset_name, split="train", streaming=True)
 
     # grab the first 110000 entries in an instruction format
-    dataset_head = dataset_orca.take(110000)
+    dataset_head = dataset_dolphin.take(110000)
     questions = []
     responses = []
 
@@ -86,45 +86,45 @@ def training_function(args):
         questions.append(f'{row["instruction"]} {row["input"]}')
         responses.append(row["output"])
 
-    pandas_dataset_orca = pd.DataFrame([questions, responses]).T
-    pandas_dataset_orca.columns = ["prompt", "response"]
+    pandas_dataset_dolphin = pd.DataFrame([questions, responses]).T
+    pandas_dataset_dolphin.columns = ["prompt", "response"]
 
-    dataset_orca_train = Dataset.from_pandas(pandas_dataset_orca.iloc[0:100000, :])
+    dataset_dolphin_train = Dataset.from_pandas(pandas_dataset_dolphin.iloc[0:100000, :])
     # remove old text cols
-    dataset_orca_train = dataset_orca_train.remove_columns(
+    dataset_dolphin_train = dataset_dolphin_train.remove_columns(
         [
             col
-            for col in dataset_orca_train.column_names
+            for col in dataset_dolphin_train.column_names
             if col not in ["prompt", "response"]
         ]
     )
 
     print("Print an example in the train dataset:")
-    print(dataset_orca_train)
-    print(dataset_orca_train[0])
+    print(dataset_dolphin_train)
+    print(dataset_dolphin_train[0])
 
     print("Final train dataset:")
-    train_dataset = dataset_orca_train.shuffle(seed=seed)
+    train_dataset = dataset_dolphin_train.shuffle(seed=seed)
     print(train_dataset)
     print(train_dataset[0])
     print(train_dataset[-1])
 
-    dataset_orca_eval = Dataset.from_pandas(pandas_dataset_orca.iloc[100000:, :])
+    dataset_dolphin_eval = Dataset.from_pandas(pandas_dataset_dolphin.iloc[100000:, :])
     # remove old text cols
-    dataset_orca_eval = dataset_orca_eval.remove_columns(
+    dataset_dolphin_eval = dataset_dolphin_eval.remove_columns(
         [
             col
-            for col in dataset_orca_eval.column_names
+            for col in dataset_dolphin_eval.column_names
             if col not in ["prompt", "response"]
         ]
     )
 
     print("Print an example in the eval dataset:")
-    print(dataset_orca_eval)
-    print(dataset_orca_eval[0])
+    print(dataset_dolphin_eval)
+    print(dataset_dolphin_eval[0])
 
     print("Final eval dataset:")
-    eval_dataset = dataset_orca_eval.shuffle(seed=seed)
+    eval_dataset = dataset_dolphin_eval.shuffle(seed=seed)
     print(eval_dataset)
     print(eval_dataset[0])
     print(eval_dataset[-1])
