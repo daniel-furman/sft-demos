@@ -58,18 +58,32 @@ The above loss curve was generated from the run's private wandb.ai log.
 Example 1: 
 
 **User**:
->You are a helpful assistant. Write me a numbered list of things to do in New York City.\n"
-
+> You are a helpful assistant. Write me a numbered list of things to do in New York City.\n
 
 **llama-2-70b-dolphin-peft**:
+> 1. Visit the Statue of Liberty: Take a ferry to Liberty Island and see the iconic symbol of freedom and democracy.
+> 2. Explore Central Park: Enjoy the lush greenery, take a stroll, or rent a bike to explore the park's many attractions, such as the Central Park Zoo and Strawberry Fields.
+> 3. Visit the Empire State Building: Take an elevator to the observation deck for breathtaking views of the city.
+> 4. Walk the Brooklyn Bridge: Cross the historic bridge and enjoy the stunning views of the Manhattan skyline.
+> 5. Experience Times Square: Take in the bright lights, billboards, and bustling energy of this iconic intersection.
+> 6. Visit the Metropolitan Museum of Art: Explore the vast collection of art and artifacts from around the world.
+> 7. Take a food tour: Sample the diverse cuisine of New York City, from pizza to bagels to ethnic specialties.
+> 8. Attend a Broadway show: Enjoy a world-class performance in the heart of the Theater District.
 
 <br>
 
 Example 2: 
 
 **User**:
+> You are a helpful assistant. Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense? Respond only with a yes or no answer in as few words as possible.\n
 
 **llama-2-70b-dolphin-peft**:
+
+> No.
+> 
+> Explanation: Daniel's barber is not available on Sundays, so he cannot get a haircut on that day. He should go on a day when the barber is working, such as Monday, Wednesday, or Friday.
+> 
+> So, the answer is no, it does not make logical sense for Daniel to go for a haircut on Sunday. He should go on a day when the barber is available.
 
 <br>
 
@@ -77,7 +91,59 @@ Example 3:
 
 **User**:
 
+> You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
+
 **llama-2-70b-dolphin-peft**:
+
+> Subject: Dinner Party Invitation - Friday, 7 PM
+> 
+> Dear Friends,
+> 
+> I hope this email finds you well! I'm excited to invite you to a dinner party at my place this Friday, at 7 PM. We'll have a delicious meal, great company, and lots of fun. Please let me know if you can make it, so I can plan accordingly.
+> 
+> Looking forward to seeing you all!
+> 
+> Kind regards,
+> Your Name
+
+> P.S. Please let me know if you have any dietary restrictions or allergies.
+
+<br>
+
+Example 4: 
+
+**User**:
+
+> You are a helpful assistant. Tell me a recipe for vegan banana bread.\n
+
+**llama-2-70b-dolphin-peft**:
+
+> Sure! Here's a delicious and easy vegan banana bread recipe:
+> 
+> Ingredients:
+> - 2 cups all-purpose flour
+> - 1/2 cup sugar
+> - 1/2 cup vegan butter (such as Earth Balance)
+> - 1/2 cup vegan milk (such as almond milk)
+> - 1/2 cup unsweetened applesauce
+> - 1/2 cup mashed ripe bananas (about 2 medium bananas)
+> - 1 teaspoon baking soda
+> - 1/2 teaspoon salt
+> - 1/2 teaspoon ground cinnamon
+> - 1/2 teaspoon ground nutmeg
+> - 1/2 teaspoon ground cloves
+> - 1/2 cup chopped walnuts (optional)
+> 
+> Instructions:
+> 1. Preheat the oven to 350°F (175°C). Grease a 9x5-inch loaf pan with vegan butter or cooking spray.
+> 2. In a large bowl, mix together the flour, sugar, vegan butter, vegan milk, applesauce, bananas, baking soda, salt, cinnamon, nutmeg, and cloves. Stir until well combined.
+> 3. Fold in the chopped walnuts, if using.
+> 4. Pour the batter into the prepared loaf pan.
+> 5. Bake for 50-60 minutes, or until a toothpick inserted into the center of the bread comes out clean.
+> 6. Let the bread cool in the pan for 10 minutes before transferring it to a wire rack to cool completely.
+> 7. Slice and enjoy!
+> 
+> Note: You can also add chocolate chips, dried fruit, or other mix-ins to the batter for extra flavor and texture. Enjoy your vegan banana bread!
 
 <br>
 
