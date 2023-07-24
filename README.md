@@ -75,21 +75,6 @@ Example 1:
 Example 2: 
 
 **User**:
-> You are a helpful assistant. Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense? Respond only with a yes or no answer in as few words as possible.\n
-
-**llama-2-70b-dolphin-peft**:
-
-> No.
-> 
-> Explanation: Daniel's barber is not available on Sundays, so he cannot get a haircut on that day. He should go on a day when the barber is working, such as Monday, Wednesday, or Friday.
-> 
-> So, the answer is no, it does not make logical sense for Daniel to go for a haircut on Sunday. He should go on a day when the barber is available.
-
-<br>
-
-Example 3: 
-
-**User**:
 
 > You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
 
@@ -110,7 +95,7 @@ Example 3:
 
 <br>
 
-Example 4: 
+Example 3: 
 
 **User**:
 
@@ -194,17 +179,6 @@ Example 1:
 Example 2: 
 
 **User**:
->\### Human: Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense?### Assistant: 
-
-**llama-2-13b-guanaco-peft**:
-
-> No, it does not make logical sense.  The barber works on Mondays, Wednesdays, and Fridays, so Daniel would have to wait until one of those days to get a haircut.  It is not possible for Daniel to get a haircut on Sunday, as the barber is not working on that day.
-
-<br>
-
-Example 3: 
-
-**User**:
 >\### Human: Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.### Assistant:
 
 **llama-2-13b-guanaco-peft**:
@@ -267,33 +241,6 @@ Example 1:
 <br>
 
 Example 2: 
-
-**User**:
->You are a helpful assistant. Daniel is in need of a haircut. His barber works Mondays, Wednesdays, and Fridays. So, Daniel went in for a haircut on Sunday. Does this make logical sense? Let's work this out in a step by step fashion to make sure we have the right answer.\n
-
-**mpt-7b-dolphin**:
-
-> Step 1: Identify the days of the week when the barber works.
-> 
-> The barber works on Mondays, Wednesdays, and Fridays.
-> 
-> Step 2: Determine the day of the week on which Daniel went for a haircut.
-> 
-> Daniel went for a haircut on Sunday.
-> 
-> Step 3: Compare the day of the week on which Daniel went for a haircut to the days when the barber works.
-> 
-> Sunday is not one of the days when the barber works.
-> 
-> Step 4: Determine if the statement makes logical sense.
-> 
-> The statement does not make logical sense because Daniel went for a haircut on a day when the barber does not work.
-> 
-> Answer: No, the statement does not make logical sense. Daniel should have gone for a haircut on a day when the barber works, such as Monday, Wednesday, or Friday.
-
-<br>
-
-Example 3: 
 
 **User**:
 >You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
