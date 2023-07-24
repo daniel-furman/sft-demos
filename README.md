@@ -41,7 +41,57 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 ## Finetuned models
 
-### 1. [`llama-2-13b-guanaco-peft`](https://huggingface.co/dfurman/llama-2-13b-guanaco-peft)
+### 1. [`llama-2-70b-dolphin-peft`](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
+
+This instruction model was built via parameter-efficient QLoRA finetuning of [llama-2-70b](https://huggingface.co/meta-llama/Llama-2-70b-hf) on the first 25k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). Finetuning was executed on a single H100 (80 GB PCIe) for roughly 17 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
+
+* Model license: Llama 2 Community License Agreement
+* Basic usage: [notebook](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft/blob/main/assets/basic_inference_llama_2_70b_dolphin.ipynb)
+* Finetuning code: [notebook](https://github.com/daniel-furman/sft-demos/blob/main/one_gpu/llama-2/dolphin/sft-llama-2-70b-dolphin-peft.py)
+
+![loss_curves](assets/jul_24_23_1_14_00_log_loss_curves_llama-2-70b-dolphin.png)
+
+The above loss curve was generated from the run's private wandb.ai log.  
+
+### Example prompts and responses
+
+Example 1: 
+
+**User**:
+>You are a helpful assistant. Write me a numbered list of things to do in New York City.\n"
+
+
+**llama-2-70b-dolphin-peft**:
+
+<br>
+
+Example 2: 
+
+**User**:
+
+**llama-2-70b-dolphin-peft**:
+
+<br>
+
+Example 3: 
+
+**User**:
+
+**llama-2-70b-dolphin-peft**:
+
+<br>
+
+### Runtime tests
+
+| runtime / 50 tokens (sec) | GPU             | attn | torch dtype | VRAM (GB) |
+|:-----------------------------:|:----------------------:|:---------------------:|:-------------:|:-----------------------:|
+| 4.50                        | 1x H100 (80 GB PCIe)  | torch               | nf4    | 39                    |
+
+The above runtime stats were generated from this [notebook](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/llama-2/dolphin/postprocessing-llama-2-70b-dolphin-peft.ipynb). 
+
+<br>
+
+### 2. [`llama-2-13b-guanaco-peft`](https://huggingface.co/dfurman/llama-2-13b-guanaco-peft)
 
 This chatbot model was built via parameter-efficient QLoRA finetuning of [llama-2-13b](https://huggingface.co/meta-llama/Llama-2-13b-hf) on all 9.85k rows of [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco) (a subset of [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) containing the highest-rated conversation paths). Finetuning was executed on a single A6000 (48 GB) for roughly 3.7 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
@@ -118,7 +168,7 @@ The above runtime stats were generated from this [notebook](https://github.com/d
 
 <br>
 
-### 2. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
+### 3. [`mpt-7b-dolphin`](https://huggingface.co/dfurman/mpt-7b-dolphin)
 
 This instruction model was built via full parameter finetuning of [mpt-7b](https://huggingface.co/mosaicml/mpt-7b) on the first 100k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). Finetuning was executed on a single H100 (80 GB PCIe) for roughly 12 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
