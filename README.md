@@ -30,9 +30,8 @@ For more background, see any number of excellent papers on the subject, includin
 
 In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.
 
-* [mpt-7b](https://huggingface.co/mosaicml/mpt-7b)
-* [llama-2-7b](https://huggingface.co/meta-llama/Llama-2-7b-hf)
-* [llama-2-13b](https://huggingface.co/meta-llama/Llama-2-13b-hf)
+* [mpt](https://huggingface.co/mosaicml/mpt-7b)
+* [llama-2](https://huggingface.co/meta-llama/Llama-2-7b-hf)
 
 We test the following datasets. Each is open-source and licensed for commercial use.
 
