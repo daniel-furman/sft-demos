@@ -47,7 +47,7 @@ This instruction model was built via parameter-efficient QLoRA finetuning of [ll
 
 * Model license: Llama 2 Community License Agreement
 * Basic usage: [notebook](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft/blob/main/assets/basic_inference_llama_2_70b_dolphin.ipynb)
-* Finetuning code: [notebook](https://github.com/daniel-furman/sft-demos/blob/main/one_gpu/llama-2/dolphin/sft-llama-2-70b-dolphin-peft.py)
+* Finetuning code: [script](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/one_gpu/llama-2/dolphin/sft-llama-2-70b-dolphin-peft.py)
 
 ![loss_curves](assets/jul_24_23_1_14_00_log_loss_curves_llama-2-70b-dolphin.png)
 
