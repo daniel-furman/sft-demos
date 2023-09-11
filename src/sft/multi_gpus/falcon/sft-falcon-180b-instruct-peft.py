@@ -272,6 +272,6 @@ trainer.train()
 # wandb: Currently logged in as: dryanfurman. Use `wandb login --relogin` to force relogin
 # wandb: Tracking run with wandb version 0.15.5
 # wandb: Run `wandb offline` to turn off syncing.
-# wandb: Syncing run vital-microwave-35 to Weights & Biases (docs)
+# wandb: Syncing run ethereal-cherry-36 to Weights & Biases (docs)
 # wandb: ⭐️ View project at https://wandb.ai/dryanfurman/huggingface
-# wandb: 🚀 View run at View run at https://wandb.ai/dryanfurman/huggingface/runs/7ey9zxp9
+# wandb: 🚀 View run at View run at https://wandb.ai/dryanfurman/huggingface/runs/gzis1ywz
