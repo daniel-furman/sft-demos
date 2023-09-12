@@ -42,8 +42,9 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 ## Finetuned models
 
-**NB** We use state-of-the-art [Language Model Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) to run the benchmark tests below, using the same version as Hugging Face's [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
+**NB**: We use state-of-the-art [Language Model Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) to run the benchmark tests below, using the same version as Hugging Face's [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 
+<br>
 
 ### 1. [`falcon-180b-instruct-peft`](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
 
