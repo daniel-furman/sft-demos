@@ -50,7 +50,7 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 * Dataset(s): 50% ehartford/dolphin & 50% garage-bAInd/Open-Platypus
 
-This instruction model was built via parameter-efficient QLoRA finetuning of [falcon-180b](https://huggingface.co/tiiuae/falcon-180B) on the first 5k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) and the first 5k riws of [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus). Finetuning was executed on 4x A6000s (48 GB RTX) for roughly XX hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
+This instruction model was built via parameter-efficient QLoRA finetuning of [falcon-180b](https://huggingface.co/tiiuae/falcon-180B) on the first 5k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) and the first 5k riws of [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus). Finetuning was executed on 4x A6000s (48 GB RTX) for roughly 32 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
 ### Benchmark metrics
 
