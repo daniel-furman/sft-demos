@@ -181,8 +181,9 @@ Example 3:
 |:-----------------------------:|:----------------------:|:---------------------:|:-------------:|:-----------------------:|
 | 27.15                        | 4x A6000s (48 GB RTX)  | torch               | nf4    | 140                    |
 
+<br>
 
-### 2. [`llama-2-70b-dolphin-peft`](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft) 
+### 2. [`llama-2-70b-dolphin-peft`](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
 
 * Dataset(s): 100% ehartford/dolphin
 
