@@ -30,8 +30,9 @@ For more background, see any number of excellent papers on the subject, includin
 
 In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.
 
+* [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
+* [falcon](https://huggingface.co/tiiuae/falcon-180B)
 * [mpt](https://huggingface.co/mosaicml/mpt-7b)
-* [llama-2](https://huggingface.co/meta-llama/Llama-2-7b-hf)
 
 We test the following datasets. Each is open-source and licensed for commercial use.
 
@@ -41,7 +42,9 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 ## Finetuned models
 
-### 1. [`falcon-180b-instruct-peft`](https://huggingface.co/dfurman/falcon-180b-instruct-peft) (50% ehartford/dolphin 50% garage-bAInd/Open-Platypus)
+### 1. [`falcon-180b-instruct-peft`](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
+
+* Dataset(s): 50% ehartford/dolphin 50% garage-bAInd/Open-Platypus
 
 This instruction model was built via parameter-efficient QLoRA finetuning of [falcon-180b](https://huggingface.co/tiiuae/falcon-180B) on the first 5k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) and the first 5k riws of [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus). Finetuning was executed on 4x A6000s (48 GB RTX) for roughly XX hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
@@ -63,7 +66,9 @@ This instruction model was built via parameter-efficient QLoRA finetuning of [fa
 
 ### Runtime tests
 
-### 2. [`llama-2-70b-dolphin-peft`](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft) (100% ehartford/dolphin)
+### 2. [`llama-2-70b-dolphin-peft`](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft) 
+
+* Dataset(s): 100% ehartford/dolphin
 
 This instruction model was built via parameter-efficient QLoRA finetuning of [llama-2-70b](https://huggingface.co/meta-llama/Llama-2-70b-hf) on the first 25k rows of [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin) (an open-source implementation of [Microsoft's Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)). Finetuning was executed on a single H100 (80 GB PCIe) for roughly 17 hours on the [Lambda Labs](https://cloud.lambdalabs.com/instances) platform.
 
