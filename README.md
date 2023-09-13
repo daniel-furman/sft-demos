@@ -83,21 +83,13 @@ Example 1:
 
 **falcon-180b-instruct-peft**:
 > 1. Visit the Empire State Building: Take in the breathtaking views of the city from the observation deck on the 86th floor.
-> 
 > 2. Stroll through Central Park: Enjoy the lush greenery, lakes, and various attractions in this iconic urban park.
-> 
 > 3. Explore the Metropolitan Museum of Art: Admire the vast collection of art from around the world, spanning thousands of years.
-> 
 > 4. See a Broadway show: Experience the magic of live theater in one of the world's most famous theater districts.
-> 
 > 5. Walk across the Brooklyn Bridge: Take in the stunning views of the Manhattan skyline and the East River as you cross this iconic bridge.
-> 
 > 6. Visit the Statue of Liberty: Take a ferry to Liberty Island and climb to the top of the statue for a unique perspective of the city.
-> 
 > 7. Visit the 9/11 Memorial and Museum: Pay tribute to the victims of the September 11th attacks and learn about the events that changed the world.
-> 
 > 8. Visit Times Square: Experience the bright lights and bustling energy of this iconic intersection.
-> 
 > 9. Visit the High Line: Stroll along this elevated park, built on a former railroad track, and ...
 
 <br>
@@ -149,27 +141,18 @@ Example 3:
 > Instructions:
 > 
 > 1. Preheat your oven to 350°F (175°C). Grease a 9x5-inch loaf pan with vegan butter or coconut oil.
-> 
 > 2. In a large mixing bowl, mash the ripe bananas with a fork until they are smooth.
-> 
 > 3. Add the melted coconut oil or vegan butter, non-dairy milk, vanilla extract, and brown sugar to the mashed bananas. Mix well until combined.
-> 
 > 4. In a separate bowl, whisk together the all-purpose flour, baking powder, baking soda, salt, and ground cinnamon (if using).
-> 
 > 5. Gradually add the dry ingredients to the wet ingredients, mixing until just combined. Do not overmix.
-> 
 > 6. If you're using walnuts or chocolate chips, gently fold them into the batter.
-> 
 > 7. Pour the batter into the prepared loaf pan and smooth the top with a spatula.
-> 
 > 8. Bake for 45-55 minutes, or until a toothpick inserted into the center of the loaf comes out clean.
-> 
 > 9. Allow the banana bread to cool in the pan for 10 minutes before transferring it to a wire rack to cool completely.
-> 
 > 10. Slice and serve warm or at room temperature. Enjoy!
-> 
+>
 > Note: You can also use whole wheat flour or a gluten-free flour blend in place of all-purpose flour. Adjust the baking time accordingly, as whole wheat flour or gluten-free flour may require a longer baking time.
-> 
+>
 > Optional variations:
 > - Add 1/2 cup of chopped nuts (walnuts, pecans, or almonds) or chocolate chips to the batter for extra flavor and texture.
   
