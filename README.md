@@ -46,7 +46,7 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 <br>
 
-### 1. [`falcon-180b-instruct-peft`](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
+## 1. [falcon-180b-instruct-peft](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
 
 * Dataset(s): 50% ehartford/dolphin & 50% garage-bAInd/Open-Platypus
 
@@ -167,7 +167,7 @@ Example 3:
 
 <br>
 
-### 2. [`llama-2-70b-dolphin-peft`](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
+## 2. [llama-2-70b-dolphin-peft](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
 
 * Dataset(s): 100% ehartford/dolphin
 
@@ -282,3 +282,72 @@ Example 3:
 | 4.50                        | 1x H100 (80 GB PCIe)  | torch               | nf4    | 39                    | 
 
 <br>
+
+## Basic usage of peft models
+
+```python
+!pip install -q -U huggingface_hub peft transformers torch accelerate
+```
+
+```python
+from huggingface_hub import notebook_login
+import torch
+from peft import PeftModel, PeftConfig
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    pipeline,
+)
+
+notebook_login()
+```
+
+```python
+peft_model_id = "dfurman/falcon-180b-instruct-peft"
+config = PeftConfig.from_pretrained(peft_model_id)
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16,
+)
+
+model = AutoModelForCausalLM.from_pretrained(
+    config.base_model_name_or_path,
+    quantization_config=bnb_config,
+    use_auth_token=True,
+    device_map="auto",
+)
+
+tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path, use_fast=True)
+tokenizer.pad_token = tokenizer.eos_token
+
+model = PeftModel.from_pretrained(model, peft_model_id)
+
+format_template = "You are a helpful assistant. {query}\n"
+```
+
+```python
+# First, format the prompt
+query = "Tell me a recipe for vegan banana bread."
+prompt = format_template.format(query=query)
+
+# Inference can be done using model.generate
+print("\n\n*** Generate:")
+
+input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
+with torch.autocast("cuda", dtype=torch.bfloat16):
+    output = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=512,
+        do_sample=True,
+        temperature=0.7,
+        return_dict_in_generate=True,
+        eos_token_id=tokenizer.eos_token_id,
+        pad_token_id=tokenizer.pad_token_id,
+        repetition_penalty=1.2,
+    )
+
+print(tokenizer.decode(output["sequences"][0], skip_special_tokens=True))
+```
