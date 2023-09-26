@@ -22,9 +22,9 @@ os.system("nvidia-smi")
 # Run the cells below to setup and install the required libraries. For our experiment we will need `accelerate`, `peft`, `transformers`, `datasets` and TRL to leverage the recent [`SFTTrainer`](https://huggingface.co/docs/trl/main/en/sft_trainer). We will use `bitsandbytes` to [quantize the base model into 4bit](https://huggingface.co/blog/4bit-transformers-bitsandbytes).
 
 # %%
-#os.system("pip install -q -U trl transformers accelerate protobuf==3.19.0")
-#os.system("pip install -q datasets bitsandbytes einops wandb")
-#os.system("pip install -q git+https://github.com/huggingface/peft")
+# os.system("pip install -q -U trl transformers accelerate protobuf==3.19.0")
+# os.system("pip install -q datasets bitsandbytes einops wandb")
+# os.system("pip install -q git+https://github.com/huggingface/peft")
 
 
 # %%
@@ -82,7 +82,9 @@ questions = []
 responses = []
 
 for row in dataset_platypus:
-    questions.append(f'You are a helpful AI assistant. Write a response that appropriately completes the request. {row["instruction"]}')
+    questions.append(
+        f'You are a helpful AI assistant. Write a response that appropriately completes the request. {row["instruction"]}'
+    )
     responses.append(row["output"])
 
 pandas_dataset_platypus = pd.DataFrame([questions, responses]).T
@@ -96,11 +98,7 @@ train_dataset
 
 # remove old text cols
 train_dataset = train_dataset.remove_columns(
-    [
-        col
-        for col in train_dataset.column_names
-        if col not in ["prompt", "response"]
-    ]
+    [col for col in train_dataset.column_names if col not in ["prompt", "response"]]
 )
 
 print("Print an example in the train dataset:")
@@ -116,11 +114,7 @@ print(train_dataset[-1])
 eval_dataset = Dataset.from_pandas(pandas_train_dataset.iloc[10000:, :])
 # remove old text cols
 eval_dataset = eval_dataset.remove_columns(
-    [
-        col
-        for col in eval_dataset.column_names
-        if col not in ["prompt", "response"]
-    ]
+    [col for col in eval_dataset.column_names if col not in ["prompt", "response"]]
 )
 
 print("Print an example in the eval dataset:")

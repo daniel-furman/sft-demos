@@ -64,10 +64,10 @@ This instruction model was built via parameter-efficient QLoRA finetuning of [fa
 
 ### Helpful links
 
-* Model license: [Falcon-180B TII License](https://huggingface.co/spaces/tiiuae/falcon-180b-license/blob/main/LICENSE.txt)
-* Basic usage: [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/multi_gpus/falcon/postprocessing-falcon-180b-instruct-peft.ipynb)
-* Finetuning code: [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/multi_gpus/falcon/sft-falcon-180b-instruct-peft.py)
-* Runtime stats: [here](https://github.com/daniel-furman/sft-demos#runtime-tests)
+ * Model license: [Falcon-180B TII License](https://huggingface.co/spaces/tiiuae/falcon-180b-license/blob/main/LICENSE.txt)
+ * Basic usage: [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/multi_gpus/falcon/postprocessing-falcon-180b-instruct-peft.ipynb)
+ * Finetuning code: [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/multi_gpus/falcon/sft-falcon-180b-instruct-peft.py)
+ * Runtime stats: [here](https://github.com/daniel-furman/sft-demos#runtime-tests)
 
 ### Loss curve
 
