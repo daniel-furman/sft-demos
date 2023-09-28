@@ -26,7 +26,7 @@ This repo contains demos for supervised finetuning (sft) of large language model
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
 * After training we get an SFT model which can be deployed as assistants (and it works to some extent).
 
-![training_pipeline](assets/assistant_training_pipeline.png)
+![training_pipeline](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/assistant_training_pipeline.png)
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
@@ -90,7 +90,7 @@ The above loss curve was generated from the run's private wandb.ai log.
 Example 1: 
 
 **User**:
-> You are a helpful assistant. Write me a numbered list of things to do in New York City.\n
+> Write me a numbered list of things to do in New York City.
 
 **falcon-180b-instruct-peft**:
 > 1. Visit the Empire State Building: Take in the breathtaking views of the city from the observation deck on the 86th floor.
@@ -109,7 +109,7 @@ Example 2:
 
 **User**:
 
-> You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
+> Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.
 
 **falcon-180b-instruct-peft**:
 
@@ -132,7 +132,7 @@ Example 3:
 
 **User**:
 
-> You are a helpful assistant. Tell me a recipe for vegan banana bread.\n
+> Tell me a recipe for vegan banana bread.
 
 **falcon-180b-instruct-peft**:
 
@@ -211,7 +211,7 @@ The above loss curve was generated from the run's private wandb.ai log.
 Example 1: 
 
 **User**:
-> You are a helpful assistant. Write me a numbered list of things to do in New York City.\n
+> Write me a numbered list of things to do in New York City.
 
 **llama-2-70b-dolphin-peft**:
 > 1. Visit the Statue of Liberty: Take a ferry to Liberty Island and see the iconic symbol of freedom and democracy.
@@ -229,7 +229,7 @@ Example 2:
 
 **User**:
 
-> You are a helpful assistant. Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.\n
+> Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.
 
 **llama-2-70b-dolphin-peft**:
 
@@ -252,7 +252,7 @@ Example 3:
 
 **User**:
 
-> You are a helpful assistant. Tell me a recipe for vegan banana bread.\n
+> Tell me a recipe for vegan banana bread.
 
 **llama-2-70b-dolphin-peft**:
 
@@ -335,7 +335,7 @@ tokenizer.pad_token = tokenizer.eos_token
 
 model = PeftModel.from_pretrained(model, peft_model_id)
 
-format_template = "You are a helpful assistant. {query}\n"
+format_template = "You are a helpful assistant. Write a response that appropriately completes the request. {query}\n"
 ```
 
 ```python
