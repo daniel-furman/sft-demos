@@ -52,7 +52,7 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 ## Finetuned models
 
-**NB**: We use state-of-the-art [Language Model Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) to run the benchmark tests below, using the same version as Hugging Face's [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
+**NB**: We use Eleuther.AI's [Language Model Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) to run the benchmark tests below, the same version as Hugging Face's [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 
 <br>
 
@@ -81,7 +81,7 @@ This instruction model was built via parameter-efficient QLoRA finetuning of [fa
 
 ### Loss curve
 
-![loss_curves](assets/sep_12_23_9_20_00_log_loss_curves_falcon-180b-instruct.png)
+![loss_curves](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/sep_12_23_9_20_00_log_loss_curves_falcon-180b-instruct.png)
 
 The above loss curve was generated from the run's private wandb.ai log.  
 
@@ -202,7 +202,7 @@ This instruction model was built via parameter-efficient QLoRA finetuning of [ll
 
 ### Loss curve
 
-![loss_curves](assets/jul_24_23_1_14_00_log_loss_curves_llama-2-70b-dolphin.png)
+![loss_curves](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/jul_24_23_1_14_00_log_loss_curves_llama-2-70b-dolphin.png)
 
 The above loss curve was generated from the run's private wandb.ai log.  
 
@@ -314,7 +314,7 @@ notebook_login()
 ```
 
 ```python
-peft_model_id = "dfurman/falcon-180b-instruct-peft"
+peft_model_id = "dfurman/mistral-7b-instruct-peft"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 bnb_config = BitsAndBytesConfig(
@@ -339,11 +339,9 @@ format_template = "You are a helpful assistant. Write a response that appropriat
 ```
 
 ```python
-# First, format the prompt
 query = "Tell me a recipe for vegan banana bread."
 prompt = format_template.format(query=query)
 
-# Inference can be done using model.generate
 print("\n\n*** Generate:")
 
 input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
