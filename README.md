@@ -40,6 +40,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.
 
+* [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 * [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
 * [falcon](https://huggingface.co/tiiuae/falcon-180B)
 * [mpt](https://huggingface.co/mosaicml/mpt-7b)
