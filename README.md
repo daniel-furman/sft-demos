@@ -34,9 +34,9 @@ For more background, see any number of excellent papers on the subject, includin
 
 1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
-2. [dfurman/Yi-6B-Instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
-3. [dfurman/Mistral-7B-Instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
-4. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
+2. [dfurman/Yi-6B-Instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-Instruct-v0.1) 
+3. [dfurman/Mistral-7B-Instruct-v0.1](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.1) 
+4. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/Falcon-180B-Instruct-v0.1) 
 
 ## Basic usage
 
