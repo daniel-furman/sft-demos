@@ -30,10 +30,10 @@ This repo contains demos for supervised finetuning (sft) of large language model
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
-## Favorite llms from this repo
+## Favorites from this repo
 
 1. [dfurman/llama-2-70b-instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
-    *  *Note*: This model was ranked 6th on the Open LLM Leaderboard on Aug 10, 2023.
+    *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
 2. [dfurman/yi-6b-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
 3. [dfurman/mistral-7b-instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
 4. [dfurman/falcon-180b-instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
