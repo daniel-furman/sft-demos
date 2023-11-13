@@ -55,38 +55,52 @@ from transformers import (
 ```
 
 ```python
-peft_model_id = "dfurman/Mistral-7B-Instruct-v0.1"
+peft_model_id = "dfurman/Yi-6B-instruct-v0.1"
 config = PeftConfig.from_pretrained(peft_model_id)
+
+tokenizer = AutoTokenizer.from_pretrained(
+    peft_model_id,
+    use_fast=True,
+    trust_remote_code=True,
+)
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16,
+)
 
 model = AutoModelForCausalLM.from_pretrained(
     config.base_model_name_or_path,
-    torch_dtype=torch.bfloat16,
+    quantization_config=bnb_config,
     device_map="auto",
     trust_remote_code=True,
 )
 
-tokenizer = AutoTokenizer.from_pretrained(
-    config.base_model_name_or_path,
-    use_fast=True, 
-    trust_remote_code=True,
+model = PeftModel.from_pretrained(
+    model, 
+    peft_model_id
 )
-
-model = PeftModel.from_pretrained(model, peft_model_id)
-
-format_template = "You are a helpful assistant. Write a response that appropriately completes the request. {query}\n"
 ```
 
 ```python
-query = "Write a short email inviting my friends to a dinner party on Friday. Respond succinctly."
-prompt = format_template.format(query=query)
+messages = [
+    {"role": "system", "content": "You are a helpful assistant. Respond as briefly as possible."},    
+    {"role": "user", "content": "Tell me a recipe for a mai tai."},
+]
 
+print("\n\n*** Prompt:")
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+print(prompt)
+
+print("\n\n*** Generate:")
 input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
 with torch.autocast("cuda", dtype=torch.bfloat16):
     output = model.generate(
         input_ids=input_ids,
-        max_new_tokens=512,
+        max_new_tokens=1024,
         do_sample=True,
-        temperature=0.1,
+        temperature=0.7,
         return_dict_in_generate=True,
         eos_token_id=tokenizer.eos_token_id,
         pad_token_id=tokenizer.pad_token_id,
@@ -94,30 +108,30 @@ with torch.autocast("cuda", dtype=torch.bfloat16):
         no_repeat_ngram_size=5,
     )
 
-print("\n\n*** Generate:")
-print(tokenizer.decode(output["sequences"][0][len(input_ids[0]):], skip_special_tokens=True))
+response = tokenizer.decode(
+    output["sequences"][0][len(input_ids[0]):], 
+    skip_special_tokens=True
+)
+print(response)
 ```
 
 <details>
 
 <summary>Output</summary>
 
-**Prompt**: Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.
+**Prompt**: <|im_start|>system
+You are a helpful assistant. Respond as briefly as possible.<|im_end|>
+<|im_start|>user
+Tell me a recipe for a mai tai.<|im_end|>
+<|im_start|>assistant
 
-**Generation**: The invitation should be brief and to-the-point, so it's best to use simple language and avoid unnecessary details or long explanations. Here is an example of a concise invitation:
+**Generation**: Here's one simple version of the classic Mai Tai cocktail:
 
-Dear Friends,
+1 oz White Rum (Bacardi, Don Papa, etc.) ➕ ½ oz Coconut Cream Liqueur (Malibu or Coco Lopez)
+2 tsp Simple Syrup ➕ Dash Orange Bitters
+3-4 Ice Cubes
 
-I hope you can join me for a fun evening at my place this Friday! We'll have delicious food, great conversation, and maybe even some games if we feel like it. Please RSVP by Wednesday night so I know who will be there. 
-
-Looking forward to seeing you all soon!
-
-Best regards,
-Your Name
-
-This message clearly communicates the essential information about the event while maintaining a friendly tone. It also includes a specific date (Friday) and timeframe (evening), as well as a clear call to action (RSVP). The closing line adds a personal touch and expresses excitement for the gathering. Overall, this invitation strikes a good balance between being informative and engaging without overwhelming the reader with too much text.
-
-Remember, when writing emails, always keep in mind your audience and their preferences. If they prefer more detailed information or additional context, adjust accordingly. However, try not to make the invitation overly complicated or lengthy – simplicity often makes for a better experience. Happy emailing!
+Shake all ingredients in a shaker filled with ice until well chilled and strain into an old fashioned glass over fresh crushed ice. Garnish with mint leaves if desired. Enjoy!
 
 </details>
 
