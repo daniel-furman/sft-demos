@@ -32,11 +32,11 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Favorites from this repo
 
-1. [dfurman/llama-2-70b-instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
+1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
-2. [dfurman/yi-6b-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
-3. [dfurman/mistral-7b-instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
-4. [dfurman/falcon-180b-instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
+2. [dfurman/Yi-6B-Instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
+3. [dfurman/Mistral-7B-Instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
+4. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
 
 ## Basic usage
 
@@ -55,7 +55,7 @@ from transformers import (
 ```
 
 ```python
-peft_model_id = "dfurman/mistral-7b-instruct-v0.1"
+peft_model_id = "dfurman/Mistral-7B-Instruct-v0.1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 model = AutoModelForCausalLM.from_pretrained(
@@ -134,6 +134,7 @@ We finetune off of the following base models in this repo:
 We use the following datasets in this repo:
 
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
+* [jondurbin/airoboros-2.2.1](https://huggingface.co/datasets/jondurbin/airoboros-2.2.1)
 * [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
 
