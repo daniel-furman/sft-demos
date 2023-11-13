@@ -40,7 +40,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Basic usage
 
-*Note*: Executed on a Google Colab notebook with 1x A100 40 GB (SXM) GPU. 
+*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.  
 
 ```python
 !pip install -q -U transformers peft torch accelerate bitsandbytes einops sentencepiece
