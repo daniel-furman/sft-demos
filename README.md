@@ -58,11 +58,11 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 <br>
 
-## 1. [dfurman/Yi-6B-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
+1. [dfurman/Yi-6B-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
 
 coming
 
-## 2. [dfurman/falcon-180b-instruct-peft](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
+2. [dfurman/falcon-180b-instruct-peft](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
 
 * Dataset(s): 50% ehartford/dolphin & 50% garage-bAInd/Open-Platypus
 
@@ -183,7 +183,7 @@ Example 3:
 
 <br>
 
-## 3. [dfurman/llama-2-70b-dolphin-peft](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
+3. [dfurman/llama-2-70b-dolphin-peft](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
 
 * Dataset(s): 100% ehartford/dolphin
 
