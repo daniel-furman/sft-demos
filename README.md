@@ -36,30 +36,12 @@ For more background, see any number of excellent papers on the subject, includin
 * See the `./runs` folder for the raw results from each sft experiment.
 * See the `./inf_tests` folder for runtime testing notebooks.
 
-## Base models and datasets
-
-In this repo, we finetune the following base models. Each is open-source and licensed for commercial use.
-
-* [yi](https://huggingface.co/01-ai)
-* [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
-* [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
-* [falcon](https://huggingface.co/tiiuae/falcon-180B)
-* [mpt](https://huggingface.co/mosaicml/mpt-7b)
-
-We test the following datasets. Each is open-source and licensed for commercial use.
-
-* [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
-* [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
-* [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
-
 ## Favorite sfts
-
-<br>
 
 1. [dfurman/llama-2-70b-instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on the Open LLM Leaderboard on Aug 10, 2023.
 2. [dfurman/Yi-6B-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
-3. [mistral-7b-instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
+3. [dfurman/mistral-7b-instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
 4. [dfurman/falcon-180b-instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
 
 
@@ -69,21 +51,18 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 ```python
 !pip install -q -U transformers peft torch accelerate bitsandbytes einops sentencepiece
-```
 
-```python
 import torch
 from peft import PeftModel, PeftConfig
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
     BitsAndBytesConfig,
-    pipeline,
 )
 ```
 
 ```python
-peft_model_id = "dfurman/Yi-6B-instruct-v0.1"
+peft_model_id = "dfurman/mistral-7b-instruct-v0.1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 model = AutoModelForCausalLM.from_pretrained(
@@ -96,7 +75,7 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(
     config.base_model_name_or_path,
     use_fast=True, 
-    trust_remote_code=True
+    trust_remote_code=True,
 )
 tokenizer.pad_token = tokenizer.eos_token
 
@@ -122,30 +101,10 @@ with torch.autocast("cuda", dtype=torch.bfloat16):
         repetition_penalty=1.2,
         no_repeat_ngram_size=5,
     )
-```
-
-```python
-query = "Write a short email inviting my friends to a dinner party on Friday. Respond succinctly."
-prompt = format_template.format(query=query)
-
-input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
-with torch.autocast("cuda", dtype=torch.bfloat16):
-    output = model.generate(
-        input_ids=input_ids,
-        max_new_tokens=512,
-        do_sample=True,
-        temperature=0.1,
-        return_dict_in_generate=True,
-        eos_token_id=tokenizer.eos_token_id,
-        pad_token_id=tokenizer.pad_token_id,
-        repetition_penalty=1.2,
-        no_repeat_ngram_size=5,
-    )
 
 print("\n\n*** Generate:")
 print(tokenizer.decode(output["sequences"][0][len(input_ids[0]):], skip_special_tokens=True))
 ```
-
 
 <details>
 
@@ -169,3 +128,19 @@ This message clearly communicates the essential information about the event whil
 Remember, when writing emails, always keep in mind your audience and their preferences. If they prefer more detailed information or additional context, adjust accordingly. However, try not to make the invitation overly complicated or lengthy – simplicity often makes for a better experience. Happy emailing!
 
 </details>
+
+## Base models and datasets used
+
+We finetune off of the following base models in this repo:
+
+* [yi](https://huggingface.co/01-ai)
+* [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
+* [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
+* [falcon](https://huggingface.co/tiiuae/falcon-180B)
+* [mpt](https://huggingface.co/mosaicml/mpt-7b)
+
+We use the following datasets in this repo:
+
+* [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
+* [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
+* [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
