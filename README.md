@@ -75,7 +75,6 @@ tokenizer = AutoTokenizer.from_pretrained(
     use_fast=True, 
     trust_remote_code=True,
 )
-tokenizer.pad_token = tokenizer.eos_token
 
 model = PeftModel.from_pretrained(model, peft_model_id)
 
