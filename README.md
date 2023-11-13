@@ -32,11 +32,9 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Code assets
 
-* See the `./sft` folder for finetuning scripts and postprocessing notebooks.
-* See the `./runs` folder for the raw results from each sft experiment.
-* See the `./inf_tests` folder for runtime testing notebooks.
+* See the `src/sft` folder for sft examples.
 
-## Favorite sfts
+## Favorite sft llms
 
 1. [dfurman/llama-2-70b-instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on the Open LLM Leaderboard on Aug 10, 2023.
@@ -129,7 +127,7 @@ Remember, when writing emails, always keep in mind your audience and their prefe
 
 </details>
 
-## Base models and datasets used
+## Base models and datasets
 
 We finetune off of the following base models in this repo:
 
@@ -144,3 +142,5 @@ We use the following datasets in this repo:
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
 * [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
+
+---
