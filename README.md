@@ -63,20 +63,17 @@ tokenizer = AutoTokenizer.from_pretrained(
     use_fast=True,
     trust_remote_code=True,
 )
-
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
     bnb_4bit_compute_dtype=torch.bfloat16,
 )
-
 model = AutoModelForCausalLM.from_pretrained(
     config.base_model_name_or_path,
     quantization_config=bnb_config,
     device_map="auto",
     trust_remote_code=True,
 )
-
 model = PeftModel.from_pretrained(
     model, 
     peft_model_id
