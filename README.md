@@ -16,9 +16,9 @@ This repo contains demos for supervised finetuning (sft) of large language model
 
 ---
 
-## Instruction tuning background
+## Instruction-tuning background
 
- In recent years, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks.
+ As of late, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks.
  
  The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for SFT:
 
@@ -30,11 +30,7 @@ This repo contains demos for supervised finetuning (sft) of large language model
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
-## Code assets
-
-* See the `src/sft` folder for sft examples.
-
-## Favorite sft llms
+## Favorite llms from this repo
 
 1. [dfurman/llama-2-70b-instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on the Open LLM Leaderboard on Aug 10, 2023.
@@ -42,10 +38,9 @@ For more background, see any number of excellent papers on the subject, includin
 3. [dfurman/mistral-7b-instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
 4. [dfurman/falcon-180b-instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
 
-
 ## Basic usage
 
-*Note* Executed on a Google Colab notebook with 1x A100 40 GB (SXM) GPU. 
+*Note*: Executed on a Google Colab notebook with 1x A100 40 GB (SXM) GPU. 
 
 ```python
 !pip install -q -U transformers peft torch accelerate bitsandbytes einops sentencepiece
