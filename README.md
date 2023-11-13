@@ -56,15 +56,19 @@ We test the following datasets. Each is open-source and licensed for commercial 
 
 <br>
 
-1. [dfurman/Yi-6B-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
-2. [dfurman/falcon-180b-instruct-peft](https://huggingface.co/dfurman/falcon-180b-instruct-peft) 
-3. [dfurman/llama-2-70b-dolphin-peft](https://huggingface.co/dfurman/llama-2-70b-dolphin-peft)
+1. [dfurman/llama-2-70b-instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
+    *  *Note*: This model was ranked 6th on the Open LLM Leaderboard on Aug 10, 2023.
+2. [dfurman/Yi-6B-instruct-v0.1](https://huggingface.co/dfurman/Yi-6B-instruct-v0.1) 
+3. [mistral-7b-instruct-v0.1](https://huggingface.co/dfurman/mistral-7b-instruct-v0.1) 
+4. [dfurman/falcon-180b-instruct-v0.1](https://huggingface.co/dfurman/falcon-180b-instruct-v0.1) 
 
 
-## Basic usage with peft adapters
+## Basic usage
+
+*Note* Executed on a Google Colab notebook with 1x A100 40 GB (SXM) GPU. 
 
 ```python
-!pip install -q -U huggingface_hub peft transformers torch accelerate
+!pip install -q -U transformers peft torch accelerate bitsandbytes einops sentencepiece
 ```
 
 ```python
@@ -89,7 +93,11 @@ model = AutoModelForCausalLM.from_pretrained(
     trust_remote_code=True,
 )
 
-tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path, use_fast=True, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(
+    config.base_model_name_or_path,
+    use_fast=True, 
+    trust_remote_code=True
+)
 tokenizer.pad_token = tokenizer.eos_token
 
 model = PeftModel.from_pretrained(model, peft_model_id)
@@ -98,10 +106,8 @@ format_template = "You are a helpful assistant. Write a response that appropriat
 ```
 
 ```python
-query = "Tell me a recipe for vegan banana bread."
+query = "Write a short email inviting my friends to a dinner party on Friday. Respond succinctly."
 prompt = format_template.format(query=query)
-
-print("\n\n*** Generate:")
 
 input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
 with torch.autocast("cuda", dtype=torch.bfloat16):
@@ -109,12 +115,57 @@ with torch.autocast("cuda", dtype=torch.bfloat16):
         input_ids=input_ids,
         max_new_tokens=512,
         do_sample=True,
-        temperature=0.7,
+        temperature=0.1,
         return_dict_in_generate=True,
         eos_token_id=tokenizer.eos_token_id,
         pad_token_id=tokenizer.pad_token_id,
         repetition_penalty=1.2,
+        no_repeat_ngram_size=5,
+    )
+```
+
+```python
+query = "Write a short email inviting my friends to a dinner party on Friday. Respond succinctly."
+prompt = format_template.format(query=query)
+
+input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
+with torch.autocast("cuda", dtype=torch.bfloat16):
+    output = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=512,
+        do_sample=True,
+        temperature=0.1,
+        return_dict_in_generate=True,
+        eos_token_id=tokenizer.eos_token_id,
+        pad_token_id=tokenizer.pad_token_id,
+        repetition_penalty=1.2,
+        no_repeat_ngram_size=5,
     )
 
-print(tokenizer.decode(output["sequences"][0], skip_special_tokens=True))
+print("\n\n*** Generate:")
+print(tokenizer.decode(output["sequences"][0][len(input_ids[0]):], skip_special_tokens=True))
 ```
+
+
+<details>
+
+<summary>Output</summary>
+
+**Prompt**: Write a short email inviting my friends to a dinner party on Friday. Respond succinctly.
+
+**Generation**: The invitation should be brief and to-the-point, so it's best to use simple language and avoid unnecessary details or long explanations. Here is an example of a concise invitation:
+
+Dear Friends,
+
+I hope you can join me for a fun evening at my place this Friday! We'll have delicious food, great conversation, and maybe even some games if we feel like it. Please RSVP by Wednesday night so I know who will be there. 
+
+Looking forward to seeing you all soon!
+
+Best regards,
+Your Name
+
+This message clearly communicates the essential information about the event while maintaining a friendly tone. It also includes a specific date (Friday) and timeframe (evening), as well as a clear call to action (RSVP). The closing line adds a personal touch and expresses excitement for the gathering. Overall, this invitation strikes a good balance between being informative and engaging without overwhelming the reader with too much text.
+
+Remember, when writing emails, always keep in mind your audience and their preferences. If they prefer more detailed information or additional context, adjust accordingly. However, try not to make the invitation overly complicated or lengthy – simplicity often makes for a better experience. Happy emailing!
+
+</details>
