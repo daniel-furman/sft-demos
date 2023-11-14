@@ -18,21 +18,17 @@ This repo contains demos for supervised finetuning (sft) of large language model
 
 ## Instruction-tuning background
 
- As of late, there has been a growing interest in building models that can follow natural language instructions to perform a wide range of tasks. These models, known as "instruction-tuned" language models, have demonstrated the ability to generalize to new tasks.
- 
- The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for SFT:
+The goal of instruction-tuning is to build LLMs that are capable of following natural language instructions to perform a wide range of tasks. The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for sft:
 
-* Collect small but high-quality datasets in the form of "prompt" and "ideal responses". 
+* Collect small but high-quality datasets in the form of prompt and ideal responses. 
 * Do language modeling on this data, nothing changes algorithmically from pretraining. 
-* After training we get an SFT model which can be deployed as assistants (and it works to some extent).
+* After training we get an sft model which can be deployed as assistants (and it works to some extent).
 
 ![training_pipeline](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/assistant_training_pipeline.png)
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
 ## Favorites from this repo
-
-The below LLMs are pretrained generative text models with anywhere from 6 to 180 billion parameters, as denoted in the model id.
 
 1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
