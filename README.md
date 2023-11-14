@@ -1,4 +1,4 @@
-# Supervised finetuning of instruction-following LLMs
+# Supervised finetuning of instruction-following Large Language Models (LLMs)
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://github.com/daniel-furman/Polyglot-or-Not/blob/main/LICENSE) 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
@@ -31,6 +31,8 @@ This repo contains demos for supervised finetuning (sft) of large language model
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
 ## Favorites from this repo
+
+The below LLMs are pretrained generative text models with anywhere from 6 to 180 billion parameters, as denoted in the model id.
 
 1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/llama-2-70b-dolphin-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
