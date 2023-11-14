@@ -80,12 +80,16 @@ model = PeftModel.from_pretrained(
 
 ```python
 messages = [
-    {"role": "system", "content": "You are a helpful assistant. Respond as briefly as possible."},    
+    {"role": "system", "content": "You are a helpful assistant."},    
     {"role": "user", "content": "Tell me a recipe for a mai tai."},
 ]
 
 print("\n\n*** Prompt:")
-prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+prompt = tokenizer.apply_chat_template(
+    messages,
+    tokenize=False,
+    add_generation_prompt=True
+)
 print(prompt)
 
 print("\n\n*** Generate:")
@@ -114,21 +118,28 @@ print(response)
 
 <summary>Output</summary>
 
-**Prompt**: <|im_start|>system
-You are a helpful assistant. Respond as briefly as possible.<|im_end|>
+**Prompt**: 
+```python
+"""<|im_start|>system
+You are a helpful assistant.<|im_end|>
 <|im_start|>user
 Tell me a recipe for a mai tai.<|im_end|>
-<|im_start|>assistant
+<|im_start|>assistant"""
+```
 
-**Generation**: Here's one simple version of the classic Mai Tai cocktail:
+**Generation**:
+```python
+"""Here's one simple version of the classic Mai Tai cocktail:
 
 1 oz White Rum (Bacardi, Don Papa, etc.) ➕ ½ oz Coconut Cream Liqueur (Malibu or Coco Lopez)
 2 tsp Simple Syrup ➕ Dash Orange Bitters
 3-4 Ice Cubes
 
-Shake all ingredients in a shaker filled with ice until well chilled and strain into an old fashioned glass over fresh crushed ice. Garnish with mint leaves if desired. Enjoy!
+Shake all ingredients in a shaker filled with ice until well chilled and strain into an old fashioned glass over fresh crushed ice. Garnish with mint leaves if desired. Enjoy!"""
+```
 
 </details>
+
 
 ## Base models and datasets
 
