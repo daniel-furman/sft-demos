@@ -8,9 +8,9 @@ This repo contains demos for supervised finetuning (sft) of large language model
 
 ## Table of contents
 
-1. [Instruction tuning background](https://github.com/daniel-furman/sft-demos#instruction-tuning-background)
+1. [Background](https://github.com/daniel-furman/sft-demos#instruction-tuning-background)
 2. [Finetuned models](https://github.com/daniel-furman/sft-demos#favorites-from-this-repo)
-3. [Basic usage of models](https://github.com/daniel-furman/sft-demos#basic-usage)
+3. [Basic usage](https://github.com/daniel-furman/sft-demos#basic-usage)
 4. [Base models and datasets](https://github.com/daniel-furman/sft-demos#base-models-and-datasets)
 
 
