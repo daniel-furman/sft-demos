@@ -40,20 +40,27 @@ For more background, see any number of excellent papers on the subject, includin
 
 *Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.  
 
-```python
-!pip install -q -U transformers peft torch accelerate bitsandbytes einops sentencepiece
+### Text generation with dfurman/Mistral-7B-Instruct-v0.1
 
+<details>
+
+<summary>Setup</summary>
+
+```python
+!pip install -q -U transformers peft torch accelerate einops sentencepiece
+```
+
+```python
 import torch
 from peft import PeftModel, PeftConfig
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
-    BitsAndBytesConfig,
 )
 ```
 
 ```python
-peft_model_id = "dfurman/Yi-6B-instruct-v0.1"
+peft_model_id = "dfurman/Mistral-7B-Instruct-v0.1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 tokenizer = AutoTokenizer.from_pretrained(
@@ -61,42 +68,53 @@ tokenizer = AutoTokenizer.from_pretrained(
     use_fast=True,
     trust_remote_code=True,
 )
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=torch.bfloat16,
-)
+
 model = AutoModelForCausalLM.from_pretrained(
     config.base_model_name_or_path,
-    quantization_config=bnb_config,
+    torch_dtype=torch.float16,
     device_map="auto",
     trust_remote_code=True,
 )
+
 model = PeftModel.from_pretrained(
     model, 
     peft_model_id
 )
 ```
 
+</details>
+
+
 ```python
 messages = [
-    {"role": "system", "content": "You are a helpful assistant."},    
     {"role": "user", "content": "Tell me a recipe for a mai tai."},
 ]
 
 print("\n\n*** Prompt:")
-prompt = tokenizer.apply_chat_template(
+input_ids = tokenizer.apply_chat_template(
     messages,
-    tokenize=False,
-    add_generation_prompt=True
+    tokenize=True,
+    return_tensors="pt",
 )
-print(prompt)
+print(tokenizer.decode(input_ids[0]))
+```
 
+<details>
+
+<summary>Prompt</summary>
+
+```python
+"<s> [INST] Tell me a recipe for a mai tai. [/INST]"
+```
+
+</details>
+
+
+```python
 print("\n\n*** Generate:")
-input_ids = tokenizer(prompt, return_tensors="pt").input_ids.cuda()
 with torch.autocast("cuda", dtype=torch.bfloat16):
     output = model.generate(
-        input_ids=input_ids,
+        input_ids=input_ids.cuda(),
         max_new_tokens=1024,
         do_sample=True,
         temperature=0.7,
@@ -112,33 +130,34 @@ response = tokenizer.decode(
     skip_special_tokens=True
 )
 print(response)
+
 ```
 
 <details>
 
-<summary>Output</summary>
+<summary>Generation</summary>
 
-**Prompt**: 
 ```python
-"""<|im_start|>system
-You are a helpful assistant.<|im_end|>
-<|im_start|>user
-Tell me a recipe for a mai tai.<|im_end|>
-<|im_start|>assistant"""
-```
+"""1 oz light rum
+½ oz dark rum
+¼ oz orange curaçao
+2 oz pineapple juice
+¾ oz lime juice
+Dash of orgeat syrup (optional)
+Splash of grenadine (for garnish, optional)
+Lime wheel and cherry garnishes (optional)
 
-**Generation**:
-```python
-"""Here's one simple version of the classic Mai Tai cocktail:
-
-1 oz White Rum (Bacardi, Don Papa, etc.) ➕ ½ oz Coconut Cream Liqueur (Malibu or Coco Lopez)
-2 tsp Simple Syrup ➕ Dash Orange Bitters
-3-4 Ice Cubes
-
-Shake all ingredients in a shaker filled with ice until well chilled and strain into an old fashioned glass over fresh crushed ice. Garnish with mint leaves if desired. Enjoy!"""
+Shake all ingredients except the splash of grenadine in a cocktail shaker over ice. Strain into an old-fashioned glass filled with fresh ice cubes. Gently pour the splash of grenadine down the side of the glass so that it sinks to the bottom. Add garnishes as desired."""
 ```
 
 </details>
+
+### Details for dfurman/Mistral-7B-Instruct-v0.1
+
+
+| runtime / 50 tokens (sec) | GPU  | dtype | VRAM (GB) |
+|:-----------------------------:|:---------------------:|:-------------:|:-----------------------:|
+| 3.44                          | 1x A100 (40 GB SXM)                | torch.float16    | 16                    |
 
 
 ## Base models and datasets
