@@ -40,7 +40,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 *Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.  
 
-**Text generation with dfurman/Mistral-7B-Instruct-v0.1**
+**dfurman/Mistral-7B-Instruct-v0.1**
 
 <details>
 
@@ -151,13 +151,6 @@ Shake all ingredients except the splash of grenadine in a cocktail shaker over i
 ```
 
 </details>
-
-**Details for dfurman/Mistral-7B-Instruct-v0.1**
-
-| runtime / 50 tokens (sec) | GPU  | dtype | VRAM (GB) |
-|:-----------------------------:|:---------------------:|:-------------:|:-----------------------:|
-| 3.44                          | 1x A100 (40 GB SXM)                | torch.float16    | 16                    |
-
 
 ## Base models and datasets
 
