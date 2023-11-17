@@ -122,13 +122,13 @@ print(response)
 
 <summary>Outputs</summary>
 
-**Prompt**
+**Prompt**:
 
 ```python
 "<s> [INST] Tell me a recipe for a mai tai. [/INST]"
 ```
 
-**Generation**
+**Generation**:
 
 ```python
 """1. Combine the following ingredients in a cocktail shaker:
