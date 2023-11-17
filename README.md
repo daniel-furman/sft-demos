@@ -59,7 +59,7 @@ from transformers import (
 ```
 
 ```python
-peft_model_id = "dfurman/Mistral-7B-Instruct-v0.1"
+peft_model_id = "dfurman/Mistral-7B-Instruct-v0.2"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 tokenizer = AutoTokenizer.from_pretrained(
