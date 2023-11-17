@@ -39,7 +39,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 *Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.  
 
-**dfurman/Mistral-7B-Instruct-v0.1**
+**dfurman/Mistral-7B-Instruct-v0.2**
 
 <details>
 
@@ -96,20 +96,7 @@ input_ids = tokenizer.apply_chat_template(
     return_tensors="pt",
 )
 print(tokenizer.decode(input_ids[0]))
-```
 
-<details>
-
-<summary>Prompt</summary>
-
-```python
-"<s> [INST] Tell me a recipe for a mai tai. [/INST]"
-```
-
-</details>
-
-
-```python
 print("\n\n*** Generate:")
 with torch.autocast("cuda", dtype=torch.bfloat16):
     output = model.generate(
@@ -129,27 +116,37 @@ response = tokenizer.decode(
     skip_special_tokens=True
 )
 print(response)
-
 ```
 
 <details>
 
-<summary>Generation</summary>
+<summary>Outputs</summary>
+
+**Prompt**
 
 ```python
-"""1 oz light rum
-½ oz dark rum
-¼ oz orange curaçao
-2 oz pineapple juice
-¾ oz lime juice
-Dash of orgeat syrup (optional)
-Splash of grenadine (for garnish, optional)
-Lime wheel and cherry garnishes (optional)
+"<s> [INST] Tell me a recipe for a mai tai. [/INST]"
+```
 
-Shake all ingredients except the splash of grenadine in a cocktail shaker over ice. Strain into an old-fashioned glass filled with fresh ice cubes. Gently pour the splash of grenadine down the side of the glass so that it sinks to the bottom. Add garnishes as desired."""
+**Generation**
+
+```python
+"""1. Combine the following ingredients in a cocktail shaker:
+2 oz light rum (or white rum)
+1 oz dark rum
+0.5 oz orange curacao or triple sec
+0.75 oz lime juice, freshly squeezed
+0.5 tbsp simple syrup (optional; if you like your drinks sweet)
+Few drops of bitters (Angostura is traditional but any will do)
+Ice cubes to fill the shaker
+
+2. Shake vigorously until well-chilled and combined.
+3. Strain into an ice-filled glass.
+4. Garnish with a slice of lime or an orange wedge, if desired."""
 ```
 
 </details>
+
 
 ## Base models and datasets
 
