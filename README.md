@@ -30,11 +30,12 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Favorites from this repo
 
-1. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
-2. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/Falcon-180B-Instruct-v0.1) 
-3. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
+1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
+2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
+3. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/Falcon-180B-Instruct-v0.1) 
+4. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
-4. [dfurman/Llama-2-13B-Instruct-v0.2](https://huggingface.co/dfurman/Llama-2-13B-Instruct-v0.2)
+5. [dfurman/Llama-2-13B-Instruct-v0.2](https://huggingface.co/dfurman/Llama-2-13B-Instruct-v0.2)
 
 ## Basic usage
 
@@ -153,6 +154,7 @@ Ice cubes to fill the shaker
 
 We finetune off of the following base models in this repo:
 
+* [mixtral](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
 * [yi](https://huggingface.co/01-ai)
 * [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 * [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
