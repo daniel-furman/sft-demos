@@ -102,15 +102,9 @@ print(tokenizer.decode(input_ids[0]))
 print("\n\n*** Generate:")
 with torch.autocast("cuda", dtype=torch.bfloat16):
     output = model.generate(
-        input_ids=input_ids.cuda(),
+        input_ids=input_ids.to("cuda"),
         max_new_tokens=1024,
-        do_sample=True,
-        temperature=0.7,
         return_dict_in_generate=True,
-        eos_token_id=tokenizer.eos_token_id,
-        pad_token_id=tokenizer.pad_token_id,
-        repetition_penalty=1.2,
-        no_repeat_ngram_size=5,
     )
 
 response = tokenizer.decode(
