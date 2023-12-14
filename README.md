@@ -39,7 +39,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Basic usage
 
-*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100 (40 GB SXM). See [here]() for the code implementation.
+*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100 (40 GB SXM). See [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/mixtral/basic_usage_Mixtral_8x7B_Instruct_v0_1_peft.ipynb) for the implementation in a notebook.
 
 **dfurman/Mixtral-8x7B-peft-v0.1**
 
