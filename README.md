@@ -30,7 +30,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Favorites from this repo
 
-1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
+1. [dfurman/Mixtral-8x7B-peft-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-peft-v0.1) 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
 3. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/Falcon-180B-Instruct-v0.1) 
 4. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
@@ -39,9 +39,9 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Basic usage
 
-*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.  
+*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.
 
-**dfurman/Mistral-7B-Instruct-v0.2**
+**dfurman/Mixtral-8x7B-peft-v0.1**
 
 <details>
 
@@ -61,7 +61,7 @@ from transformers import (
 ```
 
 ```python
-peft_model_id = "dfurman/Mistral-7B-Instruct-v0.2"
+peft_model_id = "dfurman/Mixtral-8x7B-peft-v0.1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 tokenizer = AutoTokenizer.from_pretrained(
@@ -133,18 +133,18 @@ print(response)
 **Generation**:
 
 ```python
-"""1. Combine the following ingredients in a cocktail shaker:
-2 oz light rum (or white rum)
-1 oz dark rum
-0.5 oz orange curacao or triple sec
-0.75 oz lime juice, freshly squeezed
-0.5 tbsp simple syrup (optional; if you like your drinks sweet)
-Few drops of bitters (Angostura is traditional but any will do)
-Ice cubes to fill the shaker
+"""1.5 oz White Rum
+2 oz Dark Rum
+1 oz Orange Curacao
+0.5 oz Orgeat Syrup
+0.5 oz Simple Syrup
+0.75 oz Lime Juice
 
-2. Shake vigorously until well-chilled and combined.
-3. Strain into an ice-filled glass.
-4. Garnish with a slice of lime or an orange wedge, if desired."""
+In a shaker filled with ice, combine the white rum, dark rum, orange curacao, orgeat syrup, simple syrup, and lime juice. Shake vigorously for 10-15 seconds.
+
+Strain the mixture into a double old-fashioned glass filled with fresh ice. Garnish with a lime wedge and a sprig of mint.
+
+Enjoy your delicious mai tai!"""
 ```
 
 </details>
