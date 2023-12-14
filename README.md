@@ -39,7 +39,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Basic usage
 
-*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100.
+*Note*: Use the code below to get started with the sft models herein, as ran on 1x A100 (40 GB SXM). See [here]() for the code implementation.
 
 **dfurman/Mixtral-8x7B-peft-v0.1**
 
@@ -48,7 +48,7 @@ For more background, see any number of excellent papers on the subject, includin
 <summary>Setup</summary>
 
 ```python
-!pip install -q -U transformers peft torch accelerate einops sentencepiece
+!pip install -q -U transformers peft torch accelerate einops sentencepiece bitsandbytes
 ```
 
 ```python
@@ -57,6 +57,7 @@ from peft import PeftModel, PeftConfig
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
+    BitsAndBytesConfig,
 )
 ```
 
@@ -70,8 +71,15 @@ tokenizer = AutoTokenizer.from_pretrained(
     trust_remote_code=True,
 )
 
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16,
+)
+
 model = AutoModelForCausalLM.from_pretrained(
     config.base_model_name_or_path,
+    quantization_config=bnb_config,
     torch_dtype=torch.bfloat16,
     device_map="auto",
     trust_remote_code=True,
@@ -114,34 +122,27 @@ response = tokenizer.decode(
 print(response)
 ```
 
-<details>
-
-<summary>Outputs</summary>
-
-**Prompt**:
+**Outputs**
 
 ```python
-"<s> [INST] Tell me a recipe for a mai tai. [/INST]"
+"""
+*** Prompt:
+<s> [INST] Tell me a recipe for a mai tai. [/INST] 
+
+*** Generate:
+1.5 oz light rum
+2 oz dark rum
+1 oz lime juice
+0.5 oz orange curaçao
+0.5 oz orgeat syrup
+
+In a shaker filled with ice, combine the light rum, dark rum, lime juice, orange curaçao, and orgeat syrup. Shake well.
+
+Strain the mixture into a chilled glass filled with fresh ice.
+
+Garnish with a lime wedge and a cherry.
+"""
 ```
-
-**Generation**:
-
-```python
-"""1.5 oz White Rum
-2 oz Dark Rum
-1 oz Orange Curacao
-0.5 oz Orgeat Syrup
-0.5 oz Simple Syrup
-0.75 oz Lime Juice
-
-In a shaker filled with ice, combine the white rum, dark rum, orange curacao, orgeat syrup, simple syrup, and lime juice. Shake vigorously for 10-15 seconds.
-
-Strain the mixture into a double old-fashioned glass filled with fresh ice. Garnish with a lime wedge and a sprig of mint.
-
-Enjoy your delicious mai tai!"""
-```
-
-</details>
 
 
 ## Base models and datasets
