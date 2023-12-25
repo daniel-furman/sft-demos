@@ -30,7 +30,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Favorites from this repo
 
-1. [dfurman/Mixtral-8x7B-peft-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-peft-v0.1) 
+1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
 3. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/Falcon-180B-Instruct-v0.1) 
 4. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
@@ -41,7 +41,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 *Note*: Use the code below to get started with the sft models herein, as ran on 1x A100 (40 GB SXM). See [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/mixtral/basic_usage_Mixtral_8x7B_Instruct_v0_1_peft.ipynb) for the implementation in a notebook.
 
-**dfurman/Mixtral-8x7B-peft-v0.1**
+**dfurman/Mixtral-8x7B-Instruct-v0.1**
 
 <details>
 
@@ -62,7 +62,7 @@ from transformers import (
 ```
 
 ```python
-peft_model_id = "dfurman/Mixtral-8x7B-peft-v0.1"
+peft_model_id = "dfurman/Mixtral-8x7B-Instruct-v0.1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 tokenizer = AutoTokenizer.from_pretrained(
