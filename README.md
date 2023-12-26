@@ -154,16 +154,18 @@ Here's some examples:
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
+(coming)
+
 | Metric                | Value                     |
 |-----------------------|---------------------------|
-| Avg.                  | 48.3   |
-| ARC (25-shot)         | 60.58          |
-| HellaSwag (10-shot)   | 81.96    |
-| MMLU (5-shot)         | 55.46         |
-| TruthfulQA (0-shot)   | 45.71  |
-| Winogrande (5-shot)   | 77.82   |
-| GSM8K (5-shot)        | 9.33        |
-| DROP (3-shot)         | 7.22         |
+| Avg.                  |    |
+| ARC (25-shot)         |           |
+| HellaSwag (10-shot)   |     |
+| MMLU (5-shot)         |          |
+| TruthfulQA (0-shot)   |   |
+| Winogrande (5-shot)   |    |
+| GSM8K (5-shot)        |         |
+| DROP (3-shot)         |         |
 
 See for above run.
 
@@ -171,14 +173,15 @@ See for above run.
 
 | Metric                | Value                     |
 |-----------------------|---------------------------|
-| Avg.                  | 48.3   |
-| ARC (25-shot)         | 60.58          |
-| HellaSwag (10-shot)   | 81.96    |
-| MMLU (5-shot)         | 55.46         |
-| TruthfulQA (0-shot)   | 45.71  |
-| Winogrande (5-shot)   | 77.82   |
-| GSM8K (5-shot)        | 9.33        |
-| DROP (3-shot)         | 7.22         |
+| Avg.                  |    |
+| ARC (25-shot)         |           |
+| HellaSwag (10-shot)   |     |
+| MMLU (5-shot)         |          |
+| TruthfulQA (0-shot)   |   |
+| Winogrande (5-shot)   |    |
+| GSM8K (5-shot)        |         |
+| DROP (3-shot)         |         |
+
 
 See for above run. 
 
