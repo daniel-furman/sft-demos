@@ -28,7 +28,9 @@ The goal of instruction-tuning is to build LLMs that are capable of following na
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
-## Favorites from this repo
+## Recent language models
+
+All below models are QLoRA tuned peft adapter repositories. These are aimed at general instruction-following capabilities.
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
@@ -143,6 +145,42 @@ Strain the mixture into a chilled glass filled with fresh ice.
 Garnish with a lime wedge and a cherry.
 """
 ```
+
+## Evaluation
+
+We evaluate models on 7 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models on a large number of different evaluation tasks. These correspond to the 7 benchmarks used in 🤗's Open LLM Leaderboard, as of Dec 2023. 
+
+Here's some examples:
+
+1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
+
+| Metric                | Value                     |
+|-----------------------|---------------------------|
+| Avg.                  | 48.3   |
+| ARC (25-shot)         | 60.58          |
+| HellaSwag (10-shot)   | 81.96    |
+| MMLU (5-shot)         | 55.46         |
+| TruthfulQA (0-shot)   | 45.71  |
+| Winogrande (5-shot)   | 77.82   |
+| GSM8K (5-shot)        | 9.33        |
+| DROP (3-shot)         | 7.22         |
+
+See for above run.
+
+2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
+
+| Metric                | Value                     |
+|-----------------------|---------------------------|
+| Avg.                  | 48.3   |
+| ARC (25-shot)         | 60.58          |
+| HellaSwag (10-shot)   | 81.96    |
+| MMLU (5-shot)         | 55.46         |
+| TruthfulQA (0-shot)   | 45.71  |
+| Winogrande (5-shot)   | 77.82   |
+| GSM8K (5-shot)        | 9.33        |
+| DROP (3-shot)         | 7.22         |
+
+See for above run. 
 
 
 ## Base models and datasets
