@@ -28,7 +28,7 @@ The goal of instruction-tuning is to build LLMs that are capable of following na
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
-## Recent language models
+## Finetuned models
 
 See the `src/sft` folder for all finetuning runs. 
 
@@ -185,7 +185,6 @@ See <here> for above run.
 | DROP (3-shot)         |         |
 
 See <here> for above run.
-
 
 ## Base models and datasets
 
