@@ -152,7 +152,7 @@ Garnish with a lime wedge and a cherry.
 
 See the `src/eval` folder for all evaluation runs. 
 
-We evaluate models herein on 7 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example...
+We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example, here are the benchmark scores for three models (top two from this repository, bottom one for reference)
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
@@ -182,15 +182,19 @@ We evaluate models herein on 7 key benchmarks using the Eleuther AI Language Mod
 
 3. [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) 
 
+* Precision: bfloat16
+* Run date: 10/27/23
+* Run using [this](https://github.com/EleutherAI/lm-evaluation-harness/tree/6a1c19ed7406184da887c78fa755e647ce6febcf) version of lm eval
+
 | Metric                | Value                     | Open LLM Leaderboard      |
 |-----------------------|---------------------------|---------------------------|
-| Avg.                  |                           | 65.71
+| Avg.                  | 65.10                     | 65.71
 | ARC (25-shot)         | 63.57                     | 63.14
 | HellaSwag (10-shot)   | 84.64                     | 84.88
-| MMLU (5-shot)         |                           | 60.78
+| MMLU (5-shot)         | 59.77                     | 60.78
 | TruthfulQA (0-shot)   | 66.78                     | 68.26
 | Winogrande (5-shot)   | 73.72                     | 77.19
-| GSM8K (5-shot)        |                           | 40.03
+| GSM8K (5-shot)        | 42.15                     | 40.03
 
 
 ## Base models and datasets
