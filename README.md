@@ -30,7 +30,9 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Recent language models
 
-All below models are QLoRA tuned peft adapter repositories. These are aimed at general instruction-following capabilities.
+See the `src/sft` folder for all finetuning runs. 
+
+The below models correspond to peft adapters from QLoRA finetuning. These models are aimed at general instruction-following capabilities. See the [QLoRA paper](https://arxiv.org/pdf/2305.14314.pdf) and the [peft repository](https://github.com/huggingface/peft) for more information on parameter-efficient sft.
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
@@ -39,7 +41,7 @@ All below models are QLoRA tuned peft adapter repositories. These are aimed at g
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
 5. [dfurman/Llama-2-13B-Instruct-v0.2](https://huggingface.co/dfurman/Llama-2-13B-Instruct-v0.2)
 
-## Basic usage
+## Basic inference
 
 *Note*: Use the code below to get started with the sft models herein, as ran on 1x A100 (40 GB SXM). See [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/mixtral/basic_usage_Mixtral_8x7B_Instruct_v0_1_peft.ipynb) for the implementation in a notebook.
 
@@ -148,9 +150,9 @@ Garnish with a lime wedge and a cherry.
 
 ## Evaluation
 
-We evaluate models on 7 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models on a large number of different evaluation tasks. These correspond to the 7 benchmarks used in 🤗's Open LLM Leaderboard, as of Dec 2023. 
+See the `src/eval` folder for all evaluation runs. 
 
-Here's some examples:
+We evaluate models herein on 7 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example...
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
@@ -167,7 +169,7 @@ Here's some examples:
 | GSM8K (5-shot)        |         |
 | DROP (3-shot)         |         |
 
-See for above run.
+See <here> for above run.
 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
 
@@ -182,8 +184,7 @@ See for above run.
 | GSM8K (5-shot)        |         |
 | DROP (3-shot)         |         |
 
-
-See for above run. 
+See <here> for above run.
 
 
 ## Base models and datasets
