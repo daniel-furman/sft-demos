@@ -30,7 +30,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Finetuned models
 
-See the `src/sft` folder for all finetuning runs. 
+See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. 
 
 The below models correspond to peft adapters from QLoRA finetuning. These models are aimed at general instruction-following capabilities. See the [QLoRA paper](https://arxiv.org/pdf/2305.14314.pdf) and the [peft repository](https://github.com/huggingface/peft) for more information on parameter-efficient sft.
 
@@ -150,7 +150,7 @@ Garnish with a lime wedge and a cherry.
 
 ## Evaluation
 
-See the `src/eval` folder for all evaluation runs. 
+See the [src/eval](https://github.com/daniel-furman/sft-demos/tree/main/src/eval) folder for all evaluation runs. 
 
 We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example, here are the benchmark scores for three models (top two from this repository, bottom one for reference)
 
