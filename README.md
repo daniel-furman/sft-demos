@@ -152,7 +152,7 @@ Garnish with a lime wedge and a cherry.
 
 See the [src/eval](https://github.com/daniel-furman/sft-demos/tree/main/src/eval) folder for all evaluation runs. 
 
-We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example, here are the benchmark scores for three models that we tested here.
+We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models.
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
