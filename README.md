@@ -152,33 +152,36 @@ Garnish with a lime wedge and a cherry.
 
 See the [src/eval](https://github.com/daniel-furman/sft-demos/tree/main/src/eval) folder for all evaluation runs. 
 
-We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example, here are the benchmark scores for three models (top two from this repository, bottom one for reference)
+We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models. For example, here are the benchmark scores for three models that we tested here.
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
 (coming)
 
-| Metric                | Value                     |
-|-----------------------|---------------------------|
-| Avg.                  |    |
-| ARC (25-shot)         |           |
-| HellaSwag (10-shot)   |     |
-| MMLU (5-shot)         |          |
-| TruthfulQA (0-shot)   |   |
-| Winogrande (5-shot)   |    |
-| GSM8K (5-shot)        |         |
+| Metric                | Value w/o Prompt Formatting  | Value w/ Prompt Formatting |
+|-----------------------|------------------------------|------------------------------|
+| Avg.                  |                              |                              |
+| ARC (25-shot)         |                              |                              |
+| HellaSwag (10-shot)   |                              |                              |
+| MMLU (5-shot)         |                              |                              |
+| TruthfulQA (0-shot)   |                              |                              |
+| Winogrande (5-shot)   |                              |                              |
+| GSM8K (5-shot)        |                              |                              |
 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
 
-| Metric                | Value                     |
-|-----------------------|---------------------------|
-| Avg.                  |    |
-| ARC (25-shot)         |           |
-| HellaSwag (10-shot)   |     |
-| MMLU (5-shot)         |          |
-| TruthfulQA (0-shot)   |   |
-| Winogrande (5-shot)   |    |
-| GSM8K (5-shot)        |         |
+(coming)
+
+| Metric                | Value w/o Prompt Formatting  | Value w/ Prompt Formatting |
+|-----------------------|------------------------------|------------------------------|
+| Avg.                  |                              |                              |
+| ARC (25-shot)         | 60.24                        |                              |
+| HellaSwag (10-shot)   |                              |                              |
+| MMLU (5-shot)         |                              |                              |
+| TruthfulQA (0-shot)   |                              |                              |
+| Winogrande (5-shot)   |                              |                              |
+| GSM8K (5-shot)        |                              |                              |
+
 
 3. [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) 
 
