@@ -167,9 +167,6 @@ We evaluate models herein on 7 key benchmarks using the Eleuther AI Language Mod
 | TruthfulQA (0-shot)   |   |
 | Winogrande (5-shot)   |    |
 | GSM8K (5-shot)        |         |
-| DROP (3-shot)         |         |
-
-See <here> for above run.
 
 2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
 
@@ -182,9 +179,19 @@ See <here> for above run.
 | TruthfulQA (0-shot)   |   |
 | Winogrande (5-shot)   |    |
 | GSM8K (5-shot)        |         |
-| DROP (3-shot)         |         |
 
-See <here> for above run.
+3. [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) 
+
+| Metric                | Value                     | Open LLM Leaderboard      |
+|-----------------------|---------------------------|---------------------------|
+| Avg.                  |                           | 65.71
+| ARC (25-shot)         | 63.57                     | 63.14
+| HellaSwag (10-shot)   | 84.64                     | 84.88
+| MMLU (5-shot)         |                           | 60.78
+| TruthfulQA (0-shot)   | 66.78                     | 68.26
+| Winogrande (5-shot)   | 73.72                     | 77.19
+| GSM8K (5-shot)        |                           | 40.03
+
 
 ## Base models and datasets
 
