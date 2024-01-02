@@ -156,49 +156,33 @@ We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Mod
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
-(coming)
+* Precision: 4bit
+* Run using [this](https://github.com/EleutherAI/lm-evaluation-harness/tree/b281b0921b636bc36ad05c0b0b0763bd6dd43463) version of lm eval
 
-| Metric                | Value w/o Prompt Formatting  | Value w/ Prompt Formatting |
-|-----------------------|------------------------------|------------------------------|
-| Avg.                  |                              |                              |
-| ARC (25-shot)         |                              |                              |
-| HellaSwag (10-shot)   |                              |                              |
-| MMLU (5-shot)         |                              |                              |
-| TruthfulQA (0-shot)   |                              |                              |
-| Winogrande (5-shot)   |                              |                              |
-| GSM8K (5-shot)        |                              |                              |
+| Metric                | Value                     |
+|-----------------------|---------------------------|
+| Avg.                  | 68.87   |
+| ARC (25-shot)         | 67.24          |
+| HellaSwag (10-shot)   | 86.03    |
+| MMLU (5-shot)         | 68.59         |
+| TruthfulQA (0-shot)   | 59.54   |
+| Winogrande (5-shot)   | 80.43   |
+| GSM8K (5-shot)        | 51.4        |
 
-2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
+2. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
-(coming)
+* Precision: float16
+* Run using [this](https://github.com/EleutherAI/lm-evaluation-harness/tree/b281b0921b636bc36ad05c0b0b0763bd6dd43463) version of lm eval
 
-| Metric                | Value w/o Prompt Formatting  | Value w/ Prompt Formatting |
-|-----------------------|------------------------------|------------------------------|
-| Avg.                  |                              |                              |
-| ARC (25-shot)         | 60.24                        |                              |
-| HellaSwag (10-shot)   |                              |                              |
-| MMLU (5-shot)         |                              |                              |
-| TruthfulQA (0-shot)   |                              |                              |
-| Winogrande (5-shot)   |                              |                              |
-| GSM8K (5-shot)        |                              |                              |
-
-
-3. [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) 
-
-* Precision: bfloat16
-* Run date: 10/27/23
-* Run using [this](https://github.com/EleutherAI/lm-evaluation-harness/tree/6a1c19ed7406184da887c78fa755e647ce6febcf) version of lm eval
-
-| Metric                | Value                     | Open LLM Leaderboard      |
-|-----------------------|---------------------------|---------------------------|
-| Avg.                  | 65.10                     | 65.71
-| ARC (25-shot)         | 63.57                     | 63.14
-| HellaSwag (10-shot)   | 84.64                     | 84.88
-| MMLU (5-shot)         | 59.77                     | 60.78
-| TruthfulQA (0-shot)   | 66.78                     | 68.26
-| Winogrande (5-shot)   | 73.72                     | 77.19
-| GSM8K (5-shot)        | 42.15                     | 40.03
-
+| Metric                | Value                     |
+|-----------------------|---------------------------|
+| Avg.                  | 65.72   |
+| ARC (25-shot)         | 69.62          |
+| HellaSwag (10-shot)   | 86.82    |
+| MMLU (5-shot)         | 69.18         |
+| TruthfulQA (0-shot)   | 57.43   |
+| Winogrande (5-shot)   | 83.9   |
+| GSM8K (5-shot)        | 27.37        |
 
 ## Base models and datasets
 
