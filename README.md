@@ -30,7 +30,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Finetuned models
 
-See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. There is code included here for both parameter-efficient finetuning (peft) as well as full-parameter finetuning (e.g., )
+See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. There is code included here for both parameter-efficient finetuning (peft) as well as full-parameter finetuning (accelerate). The scripts corresponding to full parameter finetuning are flexible to both single and multi GPU setups, while the peft scripts expect only single GPU clusters.
 
 Here are some of my favorites:
 
