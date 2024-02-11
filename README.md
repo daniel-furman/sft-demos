@@ -199,4 +199,10 @@ We use the following datasets in this repo:
 * [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
 
+We use the following compute providers:
+
+* Runpod
+* Lambda Labs
+* Google Colab
+
 ---
