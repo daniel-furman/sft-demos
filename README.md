@@ -30,16 +30,13 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Finetuned models
 
-See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. 
+See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. There is code included here for both parameter-efficient finetuning (peft) as well as full-parameter finetuning (e.g., )
 
-The below models correspond to peft adapters from QLoRA finetuning. These models are aimed at general instruction-following capabilities. See the [QLoRA paper](https://arxiv.org/pdf/2305.14314.pdf) and the [peft repository](https://github.com/huggingface/peft) for more information on parameter-efficient sft.
+Here are some of my favorites:
 
-1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
-2. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2) 
-3. [dfurman/Falcon-180B-Instruct-v0.1](https://huggingface.co/dfurman/Falcon-180B-Instruct-v0.1) 
-4. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
+1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)  (peft)
+2. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) (peft)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
-5. [dfurman/Llama-2-13B-Instruct-v0.2](https://huggingface.co/dfurman/Llama-2-13B-Instruct-v0.2)
 
 ## Basic inference
 
