@@ -32,8 +32,8 @@ For more background, see any number of excellent papers on the subject, includin
 
 See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. 
 
-* Scripts included for both QLoRA parameter-efficient finetuning (peft) as well as full-parameter finetuning (accelerate). 
-* Full parameter finetuning scripts are flexible to both single- and multi-GPU setups, while peft scripts expect only single-GPU clusters.
+* Scripts are included for both parameter-efficient finetuning (peft) and full-parameter finetuning (accelerate). 
+* The full parameter finetuning scripts are flexible to both single- and multi-GPU setups, while peft scripts expect only single-GPU clusters.
 
 Here are some of my favorites:
 
