@@ -30,10 +30,11 @@ For more background, see any number of excellent papers on the subject, includin
 
 ## Finetuned models
 
-See the [src/sft](https://github.com/daniel-furman/sft-demos/tree/main/src/sft) folder for all finetuning runs. 
+See `src` for all finetuning runs. 
 
-* Scripts are included for both parameter-efficient finetuning (peft) and full-parameter finetuning (accelerate). 
-* The full parameter finetuning scripts are flexible to both single- and multi-GPU setups, while peft scripts expect only single-GPU clusters.
+* Scripts are included for both parameter-efficient finetuning (`src/peft`) and full-parameter finetuning (`src/sft`) 
+    * The full-parameter scripts are flexible to single- and multi-GPU setups thanks to 🤗's [accelerate](https://github.com/huggingface/accelerate) package, while peft scripts expect only single-GPU clusters
+    * Both peft and sft scripts leverage mixed precision training, with the former running in fp4 and the latter running in fp16
 
 Here are some of my favorites:
 
@@ -43,7 +44,7 @@ Here are some of my favorites:
 
 ## Basic inference
 
-*Note*: Use the code below to get started with our sft models, as ran on 1x A100 (40 GB SXM). See [here](https://github.com/daniel-furman/sft-demos/blob/main/src/sft/mixtral/basic_usage_Mixtral_8x7B_Instruct_v0_1_peft.ipynb) for the implementation in a notebook.
+*Note*: Use the code below to get started with our sft models, as ran on 1x A100 (40 GB SXM).
 
 **dfurman/Mixtral-8x7B-Instruct-v0.1**
 
@@ -150,14 +151,13 @@ Garnish with a lime wedge and a cherry.
 
 ## Evaluation
 
-See the [src/eval](https://github.com/daniel-furman/sft-demos/tree/main/src/eval) folder for all evaluation runs. 
+See `src/eval` for all evaluation runs. 
 
 We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models.
 
 1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
 
-* Precision: 4bit
-* Run using [this](https://github.com/EleutherAI/lm-evaluation-harness/tree/b281b0921b636bc36ad05c0b0b0763bd6dd43463) version of lm eval
+* Precision: fp4
 
 | Metric                | Value                     |
 |-----------------------|---------------------------|
@@ -171,8 +171,7 @@ We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Mod
 
 2. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
-* Precision: float16
-* Run using [this](https://github.com/EleutherAI/lm-evaluation-harness/tree/b281b0921b636bc36ad05c0b0b0763bd6dd43463) version of lm eval
+* Precision: fp16
 
 | Metric                | Value                     |
 |-----------------------|---------------------------|
@@ -186,16 +185,15 @@ We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Mod
 
 ## Base models and datasets
 
-We finetune off of the following base models in this repo:
+We finetune off of the following base models:
 
+* [phi-2](https://huggingface.co/microsoft/phi-2)
 * [mixtral](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
-* [yi](https://huggingface.co/01-ai)
 * [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 * [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
 * [falcon](https://huggingface.co/tiiuae/falcon-180B)
-* [mpt](https://huggingface.co/mosaicml/mpt-7b)
 
-We use the following datasets in this repo:
+We use the following datasets:
 
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
 * [jondurbin/airoboros-2.2.1](https://huggingface.co/datasets/jondurbin/airoboros-2.2.1)
