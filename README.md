@@ -32,7 +32,7 @@ For more background, see any number of excellent papers on the subject, includin
 
 See `src` for all finetuning runs. 
 
-* Scripts are included for both parameter-efficient finetuning (`src/peft`) and full-parameter finetuning (`src/sft`) 
+* Scripts are included for both parameter-efficient `src/peft` and full-parameter `src/sft` finetuning
     * The full-parameter scripts are flexible to single- and multi-GPU setups thanks to 🤗's [accelerate](https://github.com/huggingface/accelerate) package, while peft scripts expect only single-GPU clusters
     * Both peft and sft scripts leverage mixed precision training, with the former running in fp4 and the latter running in fp16
 
@@ -202,8 +202,8 @@ We use the following datasets:
 
 We use the following compute providers:
 
-* Runpod
-* Lambda Labs
-* Google Colab
+* [RunPod](https://www.runpod.io/)
+* [Lambda Labs](https://lambdalabs.com/)
+* [Google Colab](https://colab.google/)
 
 ---
