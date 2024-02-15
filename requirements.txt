@@ -5,5 +5,4 @@ accelerate
 datasets
 peft 
 einops
-#bitsandbytes
-#triton-pre-mlir@git+https://github.com/vchiley/triton.git@triton_pre_mlir_sm90#subdirectory=python
+bitsandbytes
