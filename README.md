@@ -1,22 +1,14 @@
-# Supervised finetuning of instruction-following Large Language Models (LLMs)
+# Finetuning demos for LLMs
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://github.com/daniel-furman/Polyglot-or-Not/blob/main/LICENSE) 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
-This repo contains demos for supervised finetuning (sft) of large language models, like Meta's [llama-2](https://huggingface.co/meta-llama/Llama-2-7b-hf). In particular, we focus on tuning for short-form instruction following capabilities.
-
-## Table of contents
-
-1. [Background](https://github.com/daniel-furman/sft-demos/#instruction-tuning-background)
-2. [Finetuned models](https://github.com/daniel-furman/sft-demos#finetuned-models)
-3. [Basic inference](https://github.com/daniel-furman/sft-demos#basic-inference)
-4. [Evaluation](https://github.com/daniel-furman/sft-demos#evaluation)
-5. [Base models and datasets](https://github.com/daniel-furman/sft-demos#base-models-and-datasets)
+This repo contains demos for finetuning of Large Language Models (LLMs), like Meta's [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B). In particular, we focus on tuning for short-form instruction following capabilities and conversational chat capabilities.
 
 ---
 
-## Instruction-tuning background
+## 📚 Background
 
 The goal of instruction-tuning is to build LLMs that are capable of following natural language instructions to perform a wide range of tasks. The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for sft:
 
@@ -28,21 +20,16 @@ The goal of instruction-tuning is to build LLMs that are capable of following na
 
 For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
-## Finetuned models
+## 🔎 Finetuned models
 
-See `src` for all finetuning runs. 
+See `src` for all finetuning runs. Here are some of my favorites:
 
-* Scripts are included for both parameter-efficient `src/peft` and full-parameter `src/sft` finetuning
-    * The full-parameter scripts are flexible to single- and multi-GPU setups thanks to 🤗's [accelerate](https://github.com/huggingface/accelerate) package, while peft scripts expect only single-GPU clusters
-    * Both peft and sft scripts leverage mixed precision training, with the former running in fp4 and the latter running in fp16
-
-Here are some of my favorites:
-
-1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)  (peft)
-2. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) (peft)
+1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
+2. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)
+3. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2)
 
-## Basic inference
+## 💻 Usage
 
 *Note*: Use the code below to get started with our sft models, as ran on 1x A100 (40 GB SXM).
 
@@ -149,27 +136,13 @@ Garnish with a lime wedge and a cherry.
 """
 ```
 
-## Evaluation
+## 🏆 Evaluation
 
 See `src/eval` for all evaluation runs. 
 
-We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Model Evaluation Harness, a unified framework to test generative language models.
+We evaluate models on 6 key benchmarks using Eleuther.AI's Language Model Evaluation Harness.
 
-1. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1) 
-
-* Precision: fp4
-
-| Metric                | Value                     |
-|-----------------------|---------------------------|
-| Avg.                  | 68.87   |
-| ARC (25-shot)         | 67.24          |
-| HellaSwag (10-shot)   | 86.03    |
-| MMLU (5-shot)         | 68.59         |
-| TruthfulQA (0-shot)   | 59.54   |
-| Winogrande (5-shot)   | 80.43   |
-| GSM8K (5-shot)        | 51.4        |
-
-2. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
+1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
 * Precision: fp16
 
@@ -183,7 +156,7 @@ We evaluate models herein on 6 key benchmarks using the Eleuther AI Language Mod
 | Winogrande (5-shot)   | 83.9   |
 | GSM8K (5-shot)        | 27.37        |
 
-## Base models and datasets
+## 🤝 Base model and dataset references
 
 We finetune off of the following base models:
 
