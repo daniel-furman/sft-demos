@@ -161,7 +161,3 @@ cython_debug/
 
 # Mac OS specific
 DS_Store
-
-# Project specific ignores
-test.ipynb
-ideas.md
