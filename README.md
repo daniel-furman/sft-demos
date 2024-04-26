@@ -18,7 +18,7 @@ The goal of instruction-tuning is to build LLMs that are capable of following na
 
 ![training_pipeline](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/assistant_training_pipeline.png)
 
-For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
+For more background, see any number of excellent papers on the subject, like [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
 ## 🔎 Finetuned models
 
