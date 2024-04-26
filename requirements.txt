@@ -6,3 +6,4 @@ datasets
 peft 
 einops
 bitsandbytes
+wandb
