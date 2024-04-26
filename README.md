@@ -10,15 +10,11 @@ This repo contains demos for finetuning of Large Language Models (LLMs), like Me
 
 ## 📚 Background
 
-The goal of instruction-tuning is to build LLMs that are capable of following natural language instructions to perform a wide range of tasks. The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy. The key points illustrated for sft:
-
-* Collect small but high-quality datasets in the form of prompt and ideal responses. 
-* Do language modeling on this data, nothing changes algorithmically from pretraining. 
-* After training we get an sft model which can be deployed as assistants (and it works to some extent).
+The goal of instruction-tuning is to train LLMs that are capable of following natural language instructions to perform a wide range of tasks. The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy:
 
 ![training_pipeline](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/assistant_training_pipeline.png)
 
-For more background, see any number of excellent papers on the subject, including [Self-Instruct](https://arxiv.org/pdf/2212.10560.pdf) (2023), [Orca](https://arxiv.org/pdf/2306.02707.pdf) (2023), and [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
+For more background, see any number of excellent papers on the subject, like [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
 
 ## 🔎 Finetuned models
 
@@ -31,87 +27,29 @@ See `src` for all finetuning runs. Here are some of my favorites:
 
 ## 💻 Usage
 
-*Note*: Use the code below to get started with our sft models, as ran on 1x A100 (40 GB SXM).
-
-**dfurman/Mixtral-8x7B-Instruct-v0.1**
-
-<details>
-
-<summary>Setup</summary>
+*Note*: Use the code below to get started. Be sure to have a GPU-enabled cluster.
 
 ```python
-!pip install -q -U transformers peft torch accelerate einops sentencepiece bitsandbytes
-```
+!pip install -qU transformers accelerate
 
-```python
+from transformers import AutoTokenizer
+import transformers
 import torch
-from peft import PeftModel, PeftConfig
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    BitsAndBytesConfig,
-)
-```
 
-```python
-peft_model_id = "dfurman/Mixtral-8x7B-Instruct-v0.1"
-config = PeftConfig.from_pretrained(peft_model_id)
+model = "dfurman/Llama-3-8B-Orpo-v0.1"
+messages = [{"role": "user", "content": "What is a large language model?"}]
 
-tokenizer = AutoTokenizer.from_pretrained(
-    peft_model_id,
-    use_fast=True,
-    trust_remote_code=True,
-)
-
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=torch.bfloat16,
-)
-
-model = AutoModelForCausalLM.from_pretrained(
-    config.base_model_name_or_path,
-    quantization_config=bnb_config,
-    torch_dtype=torch.bfloat16,
+tokenizer = AutoTokenizer.from_pretrained(model)
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+pipeline = transformers.pipeline(
+    "text-generation",
+    model=model,
+    torch_dtype=torch.float16,
     device_map="auto",
-    trust_remote_code=True,
 )
 
-model = PeftModel.from_pretrained(
-    model, 
-    peft_model_id
-)
-```
-
-</details>
-
-
-```python
-messages = [
-    {"role": "user", "content": "Tell me a recipe for a mai tai."},
-]
-
-print("\n\n*** Prompt:")
-input_ids = tokenizer.apply_chat_template(
-    messages,
-    tokenize=True,
-    return_tensors="pt",
-)
-print(tokenizer.decode(input_ids[0]))
-
-print("\n\n*** Generate:")
-with torch.autocast("cuda", dtype=torch.bfloat16):
-    output = model.generate(
-        input_ids=input_ids.to("cuda"),
-        max_new_tokens=1024,
-        return_dict_in_generate=True,
-    )
-
-response = tokenizer.decode(
-    output["sequences"][0][len(input_ids[0]):], 
-    skip_special_tokens=True
-)
-print(response)
+outputs = pipeline(prompt, max_new_tokens=256, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
+print(outputs[0]["generated_text"])
 ```
 
 **Outputs**
@@ -119,20 +57,10 @@ print(response)
 ```python
 """
 *** Prompt:
-<s> [INST] Tell me a recipe for a mai tai. [/INST] 
+coming
 
 *** Generate:
-1.5 oz light rum
-2 oz dark rum
-1 oz lime juice
-0.5 oz orange curaçao
-0.5 oz orgeat syrup
-
-In a shaker filled with ice, combine the light rum, dark rum, lime juice, orange curaçao, and orgeat syrup. Shake well.
-
-Strain the mixture into a chilled glass filled with fresh ice.
-
-Garnish with a lime wedge and a cherry.
+coming
 """
 ```
 
@@ -156,10 +84,11 @@ We evaluate models on 6 key benchmarks using Eleuther.AI's Language Model Evalua
 | Winogrande (5-shot)   | 83.9   |
 | GSM8K (5-shot)        | 27.37        |
 
-## 🤝 Base model and dataset references
+## 🤝 References
 
 We finetune off of the following base models:
 
+* [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B)
 * [phi-2](https://huggingface.co/microsoft/phi-2)
 * [mixtral](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
 * [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
@@ -168,6 +97,7 @@ We finetune off of the following base models:
 
 We use the following datasets:
 
+* [mlabonne/orpo-dpo-mix-40k](https://huggingface.co/datasets/mlabonne/orpo-dpo-mix-40k)
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
 * [jondurbin/airoboros-2.2.1](https://huggingface.co/datasets/jondurbin/airoboros-2.2.1)
 * [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
