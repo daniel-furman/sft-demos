@@ -156,10 +156,11 @@ We evaluate models on 6 key benchmarks using Eleuther.AI's Language Model Evalua
 | Winogrande (5-shot)   | 83.9   |
 | GSM8K (5-shot)        | 27.37        |
 
-## 🤝 Base model and dataset references
+## 🤝 References
 
 We finetune off of the following base models:
 
+* [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B)
 * [phi-2](https://huggingface.co/microsoft/phi-2)
 * [mixtral](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
 * [mistral](https://huggingface.co/mistralai/Mistral-7B-v0.1)
@@ -168,6 +169,7 @@ We finetune off of the following base models:
 
 We use the following datasets:
 
+* [mlabonne/orpo-dpo-mix-40k](https://huggingface.co/datasets/mlabonne/orpo-dpo-mix-40k)
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
 * [jondurbin/airoboros-2.2.1](https://huggingface.co/datasets/jondurbin/airoboros-2.2.1)
 * [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
