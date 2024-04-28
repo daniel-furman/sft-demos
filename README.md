@@ -29,6 +29,12 @@ See `src` for all finetuning runs. Here are some of my favorites:
 
 *Note*: Use the code below to get started. Be sure to have a GPU-enabled cluster.
 
+## 💻 Usage
+
+<details>
+
+<summary>Setup</summary>
+
 ```python
 !pip install -qU transformers accelerate
 
@@ -36,33 +42,81 @@ from transformers import AutoTokenizer
 import transformers
 import torch
 
+if torch.cuda.get_device_capability()[0] >= 8:
+    !pip install -qqq flash-attn
+    attn_implementation = "flash_attention_2"
+    torch_dtype = torch.bfloat16
+else:
+    attn_implementation = "eager"
+    torch_dtype = torch.float16
+
 model = "dfurman/Llama-3-8B-Orpo-v0.1"
-messages = [{"role": "user", "content": "What is a large language model?"}]
 
 tokenizer = AutoTokenizer.from_pretrained(model)
-prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 pipeline = transformers.pipeline(
     "text-generation",
     model=model,
-    torch_dtype=torch.float16,
-    device_map="auto",
+    model_kwargs={
+        "torch_dtype": torch_dtype,
+        "device_map": "auto",
+        "attn_implementation": attn_implementation,
+    }
 )
-
-outputs = pipeline(prompt, max_new_tokens=256, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
-print(outputs[0]["generated_text"])
 ```
 
-**Outputs**
+</details>
+
+### Run
 
 ```python
-"""
-*** Prompt:
-coming
+messages = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Tell me a recipe for a spicy margarita."},
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+print("***Prompt:\n", prompt)
 
-*** Generate:
-coming
-"""
+outputs = pipeline(prompt, max_new_tokens=1000, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
+print("***Generation:\n", outputs[0]["generated_text"][len(prompt):])
 ```
+
+<details>
+
+<summary>Output</summary>
+
+```
+"""***Prompt:
+ <|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Tell me a recipe for a spicy margarita.<|im_end|>
+<|im_start|>assistant
+
+***Generation:
+ Sure! Here's a recipe for a spicy margarita:
+
+Ingredients:
+
+- 2 oz silver tequila
+- 1 oz triple sec
+- 1 oz fresh lime juice
+- 1/2 oz simple syrup
+- 1/2 oz fresh lemon juice
+- 1/2 tsp jalapeño, sliced (adjust to taste)
+- Ice cubes
+- Salt for rimming the glass
+
+Instructions:
+
+1. Prepare the glass by running a lime wedge around the rim of the glass. Dip the rim into a shallow plate of salt to coat.
+2. Combine the tequila, triple sec, lime juice, simple syrup, lemon juice, and jalapeño slices in a cocktail shaker.
+3. Add ice cubes to the cocktail shaker and shake vigorously for 30 seconds to 1 minute.
+4. Strain the cocktail into the prepared glass.
+5. Garnish with a lime wedge and jalapeño slice.
+
+Enjoy! This spicy margarita has a nice balance of sweetness and acidity, with a subtle heat from the jalapeño that builds gradually as you sip."""
+```
+</details>
 
 ## 🏆 Evaluation
 
