@@ -31,8 +31,6 @@ See `src` for all finetuning runs. Here are some favorites:
 
 *Note*: Use the code below to get started. Be sure to have a GPU-enabled cluster.
 
-## 💻 Usage
-
 <details>
 
 <summary>Setup</summary>
