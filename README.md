@@ -4,13 +4,15 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
-This repo contains demos for finetuning of Large Language Models (LLMs), like Meta's [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B). In particular, we focus on tuning for short-form instruction following capabilities and conversational chat capabilities.
+## 📚 Intro
+
+This repo contains demos for parameter-efficient finetuning of Large Language Models (LLMs), like Meta's [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B). In particular, we focus on tuning for short-form instruction following and conversational chat capabilities.
 
 ---
 
-## 🔎 Finetuned models
+## 🔎 Finetunes
 
-See `peft` for finetuning runs. 
+*Note*: See `_peft` for training runs, collected by base models. 
 
 * [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
 * [dfurman/Llama-3-8B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-8B-Orpo-v0.1)
@@ -105,7 +107,7 @@ print(outputs[0]["generated_text"][len(prompt):])
 
 ## 🏆 Evaluation
 
-See `eval` for evaluation runs. 
+*Note*: See `_eval` for evaluation runs. 
 
 * [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
