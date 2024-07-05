@@ -20,12 +20,12 @@ For more background, see any number of excellent papers on the subject, like [In
 
 See `src` for all finetuning runs. Here are some favorites:
 
-1. [dfurman/Llama-3-8B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-8B-Orpo-v0.1)
-2. [dfurman/Llama-3-70B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-70B-Orpo-v0.1)
-3. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
+* [dfurman/Llama-3-8B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-8B-Orpo-v0.1)
+* [dfurman/Llama-3-70B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-70B-Orpo-v0.1)
+* [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
     *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
-4. [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)
-5. [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2)
+* [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)
+* [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2)
 
 ## 💻 Usage
 
@@ -36,11 +36,15 @@ See `src` for all finetuning runs. Here are some favorites:
 <summary>Setup</summary>
 
 ```python
-!pip install -qU transformers accelerate
+!pip install -qU transformers accelerate bitsandbytes
+!huggingface-cli download dfurman/Qwen2-72B-Orpo-v0.1
+```
 
-from transformers import AutoTokenizer
+```python
+from transformers import AutoTokenizer, BitsAndBytesConfig
 import transformers
 import torch
+
 
 if torch.cuda.get_device_capability()[0] >= 8:
     !pip install -qqq flash-attn
@@ -50,7 +54,15 @@ else:
     attn_implementation = "eager"
     torch_dtype = torch.float16
 
-model = "dfurman/Llama-3-8B-Orpo-v0.1"
+# quantize if necessary
+# bnb_config = BitsAndBytesConfig(
+#    load_in_4bit=True,
+#    bnb_4bit_quant_type="nf4",
+#    bnb_4bit_compute_dtype=torch_dtype,
+#    bnb_4bit_use_double_quant=True,
+# )
+
+model = "dfurman/Qwen2-72B-Orpo-v0.1"
 
 tokenizer = AutoTokenizer.from_pretrained(model)
 pipeline = transformers.pipeline(
@@ -58,6 +70,7 @@ pipeline = transformers.pipeline(
     model=model,
     model_kwargs={
         "torch_dtype": torch_dtype,
+        # "quantization_config": bnb_config,
         "device_map": "auto",
         "attn_implementation": attn_implementation,
     }
@@ -69,64 +82,41 @@ pipeline = transformers.pipeline(
 ### Run
 
 ```python
+question = """The bakers at the Beverly Hills Bakery baked 200 loaves of bread on Monday morning. 
+They sold 93 loaves in the morning and 39 loaves in the afternoon. 
+A grocery store then returned 6 unsold loaves back to the bakery. 
+How many loaves of bread did the bakery have left?
+Respond as succinctly as possible. Format the response as a completion of this table:
+|step|subquestion|procedure|result|
+|:---|:----------|:--------|:-----:|"""
+
+
 messages = [
     {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Tell me a recipe for a spicy margarita."},
+    {"role": "user", "content": question},
 ]
 prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-print("***Prompt:\n", prompt)
+# print("***Prompt:\n", prompt)
 
 outputs = pipeline(prompt, max_new_tokens=1000, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
-print("***Generation:\n", outputs[0]["generated_text"][len(prompt):])
+print("***Generation:")
+print(outputs[0]["generated_text"][len(prompt):])
 ```
 
-<details>
-
-<summary>Output</summary>
-
 ```
-"""***Prompt:
- <|im_start|>system
-You are a helpful assistant.<|im_end|>
-<|im_start|>user
-Tell me a recipe for a spicy margarita.<|im_end|>
-<|im_start|>assistant
-
 ***Generation:
- Sure! Here's a recipe for a spicy margarita:
-
-Ingredients:
-
-- 2 oz silver tequila
-- 1 oz triple sec
-- 1 oz fresh lime juice
-- 1/2 oz simple syrup
-- 1/2 oz fresh lemon juice
-- 1/2 tsp jalapeño, sliced (adjust to taste)
-- Ice cubes
-- Salt for rimming the glass
-
-Instructions:
-
-1. Prepare the glass by running a lime wedge around the rim of the glass. Dip the rim into a shallow plate of salt to coat.
-2. Combine the tequila, triple sec, lime juice, simple syrup, lemon juice, and jalapeño slices in a cocktail shaker.
-3. Add ice cubes to the cocktail shaker and shake vigorously for 30 seconds to 1 minute.
-4. Strain the cocktail into the prepared glass.
-5. Garnish with a lime wedge and jalapeño slice.
-
-Enjoy! This spicy margarita has a nice balance of sweetness and acidity, with a subtle heat from the jalapeño that builds gradually as you sip."""
+|1|Initial loaves|Start with total loaves|200|
+|2|Sold in morning|Subtract morning sales|200 - 93 = 107|
+|3|Sold in afternoon|Subtract afternoon sales|107 - 39 = 68|
+|4|Returned loaves|Add returned loaves|68 + 6 = 74|
 ```
-</details>
+
 
 ## 🏆 Evaluation
 
 See `src/eval` for all evaluation runs. 
 
-We evaluate models on 6 key benchmarks using Eleuther.AI's Language Model Evaluation Harness.
-
-1. [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
-
-* Precision: fp16
+* [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
 | Metric                | Value                     |
 |-----------------------|---------------------------|
@@ -140,8 +130,9 @@ We evaluate models on 6 key benchmarks using Eleuther.AI's Language Model Evalua
 
 ## 🤝 References
 
-We finetune off of the following base models:
+Base models:
 
+* [qwen2](https://huggingface.co/Qwen/Qwen2-72B-Instruct)
 * [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B)
 * [phi-2](https://huggingface.co/microsoft/phi-2)
 * [mixtral](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
@@ -149,7 +140,7 @@ We finetune off of the following base models:
 * [llama-2](https://huggingface.co/meta-llama/Llama-2-70b-hf)
 * [falcon](https://huggingface.co/tiiuae/falcon-180B)
 
-We use the following datasets:
+Datasets:
 
 * [mlabonne/orpo-dpo-mix-40k](https://huggingface.co/datasets/mlabonne/orpo-dpo-mix-40k)
 * [ehartford/dolphin](https://huggingface.co/datasets/ehartford/dolphin)
@@ -157,7 +148,7 @@ We use the following datasets:
 * [garage-bAInd/Open-Platypus](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
 * [timdettmers/openassistant-guanaco](https://huggingface.co/datasets/timdettmers/openassistant-guanaco)
 
-We use the following compute providers:
+Compute providers:
 
 * [RunPod](https://www.runpod.io/)
 * [Lambda Labs](https://lambdalabs.com/)
