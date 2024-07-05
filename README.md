@@ -8,18 +8,11 @@ This repo contains demos for finetuning of Large Language Models (LLMs), like Me
 
 ---
 
-## 📚 Background
-
-The goal of instruction-tuning is to train LLMs that are capable of following natural language instructions to perform a wide range of tasks. The below was captured from the "[State of GPTs](https://www.youtube.com/watch?v=bZQun8Y4L2A)" talk by Andrej Karpathy:
-
-![training_pipeline](https://raw.githubusercontent.com/daniel-furman/sft-demos/main/assets/assistant_training_pipeline.png)
-
-For more background, see any number of excellent papers on the subject, like [InstructGPT](https://arxiv.org/pdf/2203.02155.pdf) (2022). 
-
 ## 🔎 Finetuned models
 
-See `src` for all finetuning runs. Here are some favorites:
+See `peft` for finetuning runs. 
 
+* [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
 * [dfurman/Llama-3-8B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-8B-Orpo-v0.1)
 * [dfurman/Llama-3-70B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-70B-Orpo-v0.1)
 * [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
@@ -31,9 +24,7 @@ See `src` for all finetuning runs. Here are some favorites:
 
 *Note*: Use the code below to get started. Be sure to have a GPU-enabled cluster.
 
-<details>
-
-<summary>Setup</summary>
+### Setup
 
 ```python
 !pip install -qU transformers accelerate bitsandbytes
@@ -77,8 +68,6 @@ pipeline = transformers.pipeline(
 )
 ```
 
-</details>
-
 ### Run
 
 ```python
@@ -103,6 +92,8 @@ print("***Generation:")
 print(outputs[0]["generated_text"][len(prompt):])
 ```
 
+### Result
+
 ```
 ***Generation:
 |1|Initial loaves|Start with total loaves|200|
@@ -114,7 +105,7 @@ print(outputs[0]["generated_text"][len(prompt):])
 
 ## 🏆 Evaluation
 
-See `src/eval` for all evaluation runs. 
+See `eval` for evaluation runs. 
 
 * [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
