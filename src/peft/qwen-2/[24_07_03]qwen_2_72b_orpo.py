@@ -28,15 +28,15 @@ os.system("nvidia-smi")
 os.system("nvcc --version")
 
 # %%
-# wb_token = ""
-# wandb.login(key=wb_token)
+wb_token = ""
+wandb.login(key=wb_token)
 
 # %%
 # torch.cuda.get_device_capability()[0]
 
 # %%
 if torch.cuda.get_device_capability()[0] >= 8:
-    #!pip install -qqq flash-attn
+    os.system("pip install -qqq flash-attn")
     attn_implementation = "flash_attention_2"
     torch_dtype = torch.bfloat16
 else:
@@ -44,8 +44,7 @@ else:
     torch_dtype = torch.float16
 
 # %%
-from huggingface_hub import notebook_login
-
+# from huggingface_hub import notebook_login
 # notebook_login()
 
 # %%
@@ -102,8 +101,8 @@ tokenizer
 dataset_name = "mlabonne/orpo-dpo-mix-40k"
 dataset = load_dataset(dataset_name, split="all")
 
-# note taking 10k of 40k
-dataset = dataset.shuffle(seed=42).select(range(10000))
+# note taking 1.5k of 40k
+dataset = dataset.shuffle(seed=42).select(range(1500))
 
 
 def format_chat_template(row):
