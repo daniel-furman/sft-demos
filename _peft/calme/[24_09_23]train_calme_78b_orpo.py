@@ -1,8 +1,3 @@
-# %%
-#!pip install -U transformers datasets accelerate peft trl bitsandbytes wandb
-#!huggingface-cli download MaziyarPanahi/calme-2.4-rys-78b
-#!huggingface-cli login
-# %%
 import gc
 import os
 
