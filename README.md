@@ -12,15 +12,54 @@ This repo contains demos for parameter-efficient finetuning of Large Language Mo
 
 ## 🔎 Finetunes
 
-*Note*: See `_peft` for training runs, collected by base models. 
+*Note*: See `_peft` for training runs, which are organized by base model. 
 
+* [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 * [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
 * [dfurman/Llama-3-8B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-8B-Orpo-v0.1)
 * [dfurman/Llama-3-70B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-70B-Orpo-v0.1)
 * [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
-    *  *Note*: This model was ranked 6th on 🤗's Open LLM Leaderboard in Aug 2023
 * [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)
 * [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2)
+
+## 🏆 Evaluation
+
+*Note*: See `_eval` for evaluation runs. Also see 🤗's Open LLM Leaderboard [here](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard).
+
+### Open LLM Leaderboard v2
+
+* [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
+
+*coming*
+
+* [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
+
+Detailed results can be found [here](https://huggingface.co/datasets/open-llm-leaderboard/details_dfurman__Qwen2-72B-Orpo-v0.1)
+
+|      Metric       |Value|
+|-------------------|----:|
+|Avg.               |43.32|
+|IFEval (0-Shot)    |78.80|
+|BBH (3-Shot)       |57.41|
+|MATH Lvl 5 (4-Shot)|35.42|
+|GPQA (0-shot)      |17.90|
+|MuSR (0-shot)      |20.87|
+|MMLU-PRO (5-shot)  |49.50|
+
+### Open LLM Leaderboard v1
+
+* [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
+
+| Metric                | Value                     |
+|-----------------------|---------------------------|
+| Avg.                  | 65.72   |
+| ARC (25-shot)         | 69.62          |
+| HellaSwag (10-shot)   | 86.82    |
+| MMLU (5-shot)         | 69.18         |
+| TruthfulQA (0-shot)   | 57.43   |
+| Winogrande (5-shot)   | 83.9   |
+| GSM8K (5-shot)        | 27.37        |
+
 
 ## 💻 Usage
 
@@ -103,23 +142,6 @@ print(outputs[0]["generated_text"][len(prompt):])
 |3|Sold in afternoon|Subtract afternoon sales|107 - 39 = 68|
 |4|Returned loaves|Add returned loaves|68 + 6 = 74|
 ```
-
-
-## 🏆 Evaluation
-
-*Note*: See `_eval` for evaluation runs. 
-
-* [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
-
-| Metric                | Value                     |
-|-----------------------|---------------------------|
-| Avg.                  | 65.72   |
-| ARC (25-shot)         | 69.62          |
-| HellaSwag (10-shot)   | 86.82    |
-| MMLU (5-shot)         | 69.18         |
-| TruthfulQA (0-shot)   | 57.43   |
-| Winogrande (5-shot)   | 83.9   |
-| GSM8K (5-shot)        | 27.37        |
 
 ## 🤝 References
 
