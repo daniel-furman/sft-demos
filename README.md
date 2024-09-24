@@ -28,11 +28,11 @@ This repo contains demos for parameter-efficient finetuning of Large Language Mo
 
 ### Open LLM Leaderboard v2
 
-* [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
+[dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 
 *coming*
 
-* [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
+[dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
 
 Detailed results can be found [here](https://huggingface.co/datasets/open-llm-leaderboard/details_dfurman__Qwen2-72B-Orpo-v0.1)
 
@@ -48,7 +48,7 @@ Detailed results can be found [here](https://huggingface.co/datasets/open-llm-le
 
 ### Open LLM Leaderboard v1
 
-* [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
+[dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
 
 | Metric                | Value                     |
 |-----------------------|---------------------------|
