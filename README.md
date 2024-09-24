@@ -65,11 +65,13 @@ Detailed results can be found [here](https://huggingface.co/datasets/open-llm-le
 
 *Note*: Use the code below to get started. Be sure to have a GPU-enabled cluster.
 
-### Setup
+<details>
+
+<summary>Setup</summary>
 
 ```python
 !pip install -qU transformers accelerate bitsandbytes
-!huggingface-cli download dfurman/Qwen2-72B-Orpo-v0.1
+!huggingface-cli download dfurman/CalmeRys-78B-Orpo-v0.1
 ```
 
 ```python
@@ -86,7 +88,7 @@ else:
     attn_implementation = "eager"
     torch_dtype = torch.float16
 
-# quantize if necessary
+# # quantize if necessary
 # bnb_config = BitsAndBytesConfig(
 #    load_in_4bit=True,
 #    bnb_4bit_quant_type="nf4",
@@ -94,7 +96,7 @@ else:
 #    bnb_4bit_use_double_quant=True,
 # )
 
-model = "dfurman/Qwen2-72B-Orpo-v0.1"
+model = "dfurman/CalmeRys-78B-Orpo-v0.1"
 
 tokenizer = AutoTokenizer.from_pretrained(model)
 pipeline = transformers.pipeline(
@@ -109,7 +111,9 @@ pipeline = transformers.pipeline(
 )
 ```
 
-### Run
+</details>
+
+### Example 1
 
 ```python
 question = """The bakers at the Beverly Hills Bakery baked 200 loaves of bread on Monday morning. 
@@ -131,16 +135,58 @@ prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_
 outputs = pipeline(prompt, max_new_tokens=1000, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
 print("***Generation:")
 print(outputs[0]["generated_text"][len(prompt):])
-```
 
-### Result
+```
 
 ```
 ***Generation:
-|1|Initial loaves|Start with total loaves|200|
-|2|Sold in morning|Subtract morning sales|200 - 93 = 107|
-|3|Sold in afternoon|Subtract afternoon sales|107 - 39 = 68|
-|4|Returned loaves|Add returned loaves|68 + 6 = 74|
+|1|Calculate total sold|Add morning and afternoon sales|132|
+|2|Subtract sold from total|200 - 132|68|
+|3|Adjust for returns|Add returned loaves to remaining|74|
+```
+
+### Example 2
+
+```python
+question = "What's a good recipe for a spicy margarita?"
+
+messages = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": question},
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+# print("***Prompt:\n", prompt)
+
+outputs = pipeline(prompt, max_new_tokens=1000, do_sample=True, temperature=0.7, top_k=50, top_p=0.95)
+print("***Generation:")
+print(outputs[0]["generated_text"][len(prompt):])
+```
+
+```
+***Generation:
+To make a Spicy Margarita, you'll need to incorporate a chili or pepper element into your classic margarita recipe. Here’s a simple way to do it:
+
+### Ingredients:
+- 2 oz tequila (blanco or reposado)
+- 1 oz fresh lime juice
+- 1/2 oz triple sec (Cointreau or Grand Marnier)
+- 1/2 oz agave syrup or simple syrup
+- 1-2 slices of jalapeño (or more depending on how spicy you like it)
+- Salt and/or chili powder for rimming the glass
+- Ice
+- Lime wheel for garnish
+
+### Instructions:
+1. **Muddle Jalapeño**: In a shaker, muddle the jalapeño slices slightly. This will release the oils and heat from the peppers.
+2. **Add Remaining Ingredients**: Add the tequila, lime juice, triple sec, and agave syrup or simple syrup. 
+3. **Shake and Strain**: Fill the shaker with ice and shake vigorously until cold. Strain into a salt and/or chili powder rimmed glass filled with ice.
+4. **Garnish and Serve**: Garnish with a lime wheel and enjoy.
+
+If you prefer a smoother spiciness that doesn't overpower the drink, you could also consider making a jalapeño-infused tequila by leaving the jalapeño slices in the bottle of tequila for several hours to a couple of days, adjusting the time based on desired level of spiciness. Then use this infused tequila instead of regular tequila in the recipe above. 
+
+Another variation is to use a spicy syrup. To make this, combine equal parts water and sugar with a few sliced jalapeños in a saucepan. Bring to a boil, stirring occasionally to dissolve the sugar. Reduce heat and simmer for about 5 minutes. Let cool, strain out the jalapeños, then store in a sealed container in the refrigerator until ready to use. Use this spicy syrup instead of regular syrup in the recipe. 
+
+As always, adjust the quantity of jalapeño or the type of chili used to suit your taste. Enjoy responsibly!
 ```
 
 ## 🤝 References
