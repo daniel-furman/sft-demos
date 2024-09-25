@@ -116,6 +116,30 @@ pipeline = transformers.pipeline(
 ### Example 1
 
 ```python
+question = "Is the number 9.11 larger than 9.9?"
+
+messages = [
+    {"role": "system", "content": "You are a helpful assistant that thinks step by step."},
+    {"role": "user", "content": question},
+]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+# print("***Prompt:\n", prompt)
+
+outputs = pipeline(
+    prompt, max_new_tokens=1000, do_sample=True, temperature=0.7, top_k=50, top_p=0.95
+)
+print("***Generation:")
+print(outputs[0]["generated_text"][len(prompt) :])
+```
+
+```
+***Generation:
+To compare these two numbers, it's important to look at their decimal places after the whole number part, which is 9 in both cases. Comparing the tenths place, 9.11 has a '1' and 9.9 has a '9'. Since '9' is greater than '1', 9.9 is larger than 9.11.
+```
+
+### Example 2
+
+```python
 question = """The bakers at the Beverly Hills Bakery baked 200 loaves of bread on Monday morning. 
 They sold 93 loaves in the morning and 39 loaves in the afternoon. 
 A grocery store then returned 6 unsold loaves back to the bakery. 
@@ -145,7 +169,7 @@ print(outputs[0]["generated_text"][len(prompt):])
 |3|Adjust for returns|Add returned loaves to remaining|74|
 ```
 
-### Example 2
+### Example 3
 
 ```python
 question = "What's a good recipe for a spicy margarita?"
