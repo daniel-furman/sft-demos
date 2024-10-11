@@ -26,14 +26,9 @@ This repo contains demos for parameter-efficient finetuning of Large Language Mo
 
 *Note*: See `_eval` for evaluation runs. Also see 🤗's Open LLM Leaderboard [here](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard).
 
-### Open LLM Leaderboard v2
-
-**[dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)**
+[dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 
 * Currently sitting in first place, woot!
-
-[Open LLM Leaderboard Evaluation Results](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard)
-Detailed results can be found [here](https://huggingface.co/datasets/open-llm-leaderboard/details_dfurman__CalmeRys-78B-Orpo-v0.1)
 
 |      Metric       |Value|
 |-------------------|----:|
