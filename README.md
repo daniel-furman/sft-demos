@@ -28,37 +28,22 @@ This repo contains demos for parameter-efficient finetuning of Large Language Mo
 
 ### Open LLM Leaderboard v2
 
-[dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
+**[dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)**
 
-*coming*
+* Currently sitting in first place, woot!
 
-[dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
-
-Detailed results can be found [here](https://huggingface.co/datasets/open-llm-leaderboard/details_dfurman__Qwen2-72B-Orpo-v0.1)
+[Open LLM Leaderboard Evaluation Results](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard)
+Detailed results can be found [here](https://huggingface.co/datasets/open-llm-leaderboard/details_dfurman__CalmeRys-78B-Orpo-v0.1)
 
 |      Metric       |Value|
 |-------------------|----:|
-|Avg.               |43.32|
-|IFEval (0-Shot)    |78.80|
-|BBH (3-Shot)       |57.41|
-|MATH Lvl 5 (4-Shot)|35.42|
-|GPQA (0-shot)      |17.90|
-|MuSR (0-shot)      |20.87|
-|MMLU-PRO (5-shot)  |49.50|
-
-### Open LLM Leaderboard v1
-
-[dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1) 
-
-| Metric                | Value                     |
-|-----------------------|---------------------------|
-| Avg.                  | 65.72   |
-| ARC (25-shot)         | 69.62          |
-| HellaSwag (10-shot)   | 86.82    |
-| MMLU (5-shot)         | 69.18         |
-| TruthfulQA (0-shot)   | 57.43   |
-| Winogrande (5-shot)   | 83.9   |
-| GSM8K (5-shot)        | 27.37        |
+|Avg.               |50.78|
+|IFEval (0-Shot)    |81.63|
+|BBH (3-Shot)       |61.92|
+|MATH Lvl 5 (4-Shot)|37.92|
+|GPQA (0-shot)      |20.02|
+|MuSR (0-shot)      |36.37|
+|MMLU-PRO (5-shot)  |66.80|
 
 
 ## 💻 Usage
