@@ -6,13 +6,15 @@
 
 ## 📚 Intro
 
-This repo contains demos for parameter-efficient finetuning of Large Language Models (LLMs), like Meta's [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B). In particular, we focus on tuning for short-form instruction following and conversational chat capabilities.
+This repo contains demos for finetuning of Large Language Models (LLMs), like Meta's [llama-3](https://huggingface.co/meta-llama/Meta-Llama-3-8B). In particular, we focus on training for short-form instruction following.
 
 ---
 
 ## 🔎 Finetunes
 
 *Note*: See `_peft` for training runs, which are organized by base model. 
+
+Some examples:
 
 * [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 * [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
@@ -24,11 +26,13 @@ This repo contains demos for parameter-efficient finetuning of Large Language Mo
 
 ## 🏆 Evaluation
 
-*Note*: See `_eval` for evaluation runs. Also see 🤗's Open LLM Leaderboard [here](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard).
+*Note*: See `_eval` for evaluation runs. 
+
+An example:
 
 [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 
-* Currently sitting in first place, woot!
+> As of Oct 2024, this is the top ranking model on the [Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard) 🏆.
 
 |      Metric       |Value|
 |-------------------|----:|
@@ -43,7 +47,7 @@ This repo contains demos for parameter-efficient finetuning of Large Language Mo
 
 ## 💻 Usage
 
-*Note*: Use the code below to get started. Be sure to have a GPU-enabled cluster.
+*Note*: Use the code below to get started on text generation (inference). Be sure to have a GPU-enabled cluster.
 
 <details>
 
