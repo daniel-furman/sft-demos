@@ -7,3 +7,5 @@ peft
 einops
 bitsandbytes
 wandb
+mlx-lm
+asitop

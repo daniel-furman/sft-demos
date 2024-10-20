@@ -1,7 +1,7 @@
 # Finetuning demos for LLMs
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://github.com/daniel-furman/Polyglot-or-Not/blob/main/LICENSE) 
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/release/python-390/) 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
 ## 📚 Intro
@@ -17,6 +17,7 @@ This repo contains demos for finetuning of Large Language Models (LLMs), like Me
 Some examples:
 
 * [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
+    * [mlx-community/CalmeRys-78B-Orpo-v0.1-4bit](https://huggingface.co/mlx-community/CalmeRys-78B-Orpo-v0.1-4bit)
 * [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
 * [dfurman/Llama-3-70B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-70B-Orpo-v0.1)
 * [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)
@@ -217,5 +218,13 @@ Compute providers:
 * [RunPod](https://www.runpod.io/)
 * [Lambda Labs](https://lambdalabs.com/)
 * [Google Colab](https://colab.google/)
+
+## Reccomended venv setup
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+```
 
 ---
