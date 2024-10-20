@@ -32,7 +32,7 @@ An example:
 
 [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 
-> As of Oct 2024, this is the top ranking model on the [Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard) 🏆.
+As of Oct 2024, this is the top ranking model on the [Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard) 🏆.
 
 |      Metric       |Value|
 |-------------------|----:|
