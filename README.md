@@ -18,11 +18,8 @@ Some examples:
 
 * [dfurman/CalmeRys-78B-Orpo-v0.1](https://huggingface.co/dfurman/CalmeRys-78B-Orpo-v0.1)
 * [dfurman/Qwen2-72B-Orpo-v0.1](https://huggingface.co/dfurman/Qwen2-72B-Orpo-v0.1)
-* [dfurman/Llama-3-8B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-8B-Orpo-v0.1)
 * [dfurman/Llama-3-70B-Orpo-v0.1](https://huggingface.co/dfurman/Llama-3-70B-Orpo-v0.1)
-* [dfurman/Llama-2-70B-Instruct-v0.1](https://huggingface.co/dfurman/Llama-2-70B-Instruct-v0.1)
 * [dfurman/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/dfurman/Mixtral-8x7B-Instruct-v0.1)
-* [dfurman/Mistral-7B-Instruct-v0.2](https://huggingface.co/dfurman/Mistral-7B-Instruct-v0.2)
 
 ## 🏆 Evaluation
 
