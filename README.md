@@ -12,7 +12,7 @@ This repo contains demos for finetuning of Large Language Models (LLMs), like Me
 
 ## 🔎 Finetunes
 
-*Note*: See `_peft` for training runs, which are organized by base model. 
+*Note*: See `_peft` for training runs, as organized by base model. 
 
 Some examples:
 
